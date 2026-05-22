@@ -1,0 +1,17 @@
+.env
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+data/raw/
+data/embeddings/
+*.faiss
+*.pkl
+.DS_Store
+*.log
+logs/
+.ipynb_checkpoints/
+dist/
+build/
+*.egg-info/
