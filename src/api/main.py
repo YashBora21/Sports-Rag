@@ -7,7 +7,6 @@ Fixes applied:
      access which caused 500 errors on rapid sequential queries
   2. Per-request semaphore limits to 3 concurrent queries max
   3. json import added for startup error handling
-  4. Support for both Gemini API and Ollama LLM providers
 """
 import json
 import time
@@ -209,6 +208,8 @@ async def query(req: QueryRequest):
         question=result["question"], answer=result["answer"],
         sources=sources, latency_ms=result["latency_ms"],
         sport_filter=req.sport_filter,
+        intent=result.get("intent"),
+        source_used=result.get("source_used"),
     )
 
 

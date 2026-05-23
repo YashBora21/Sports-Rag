@@ -174,6 +174,119 @@ class SportsTextBuilder:
             }
         }
 
+    # ── ODI Cricket (One Day International) ───────────────────────────────────
+    def odi_batting_to_doc(self, row: dict) -> dict:
+        player = str(row.get("Player", "Unknown"))
+        span = str(row.get("Span", ""))
+        mat = int(row.get("Mat", 0) or 0)
+        inns = int(row.get("Inns", 0) or 0)
+        runs = int(row.get("Runs", 0) or 0)
+        ave = float(row.get("Ave", 0) or 0)
+        centuries = int(row.get("100", 0) or 0)
+        fifties = int(row.get("50", 0) or 0)
+        
+        text = (
+            f"ODI cricket: {player} played {mat} matches ({inns} innings) "
+            f"from {span}, scoring {runs} runs with an average of {ave:.2f}. "
+            f"International centuries: {centuries}, half-centuries: {fifties}."
+        )
+        return {
+            "text": text,
+            "sport": "cricket",
+            "metadata": {
+                "format": "ODI",
+                "player": player,
+                "matches": str(mat),
+                "runs": str(runs),
+                "centuries": str(centuries),
+                "span": span,
+            }
+        }
+
+    # ── Test Cricket ──────────────────────────────────────────────────────────
+    def test_batting_to_doc(self, row: dict) -> dict:
+        player = str(row.get("Player", "Unknown"))
+        span = str(row.get("Span", ""))
+        mat = int(row.get("Mat", 0) or 0)
+        inns = int(row.get("Inns", 0) or 0)
+        runs = int(row.get("Runs", 0) or 0)
+        ave = float(row.get("Ave", 0) or 0)
+        centuries = int(row.get("100", 0) or 0)
+        fifties = int(row.get("50", 0) or 0)
+        
+        text = (
+            f"Test cricket: {player} played {mat} test matches ({inns} innings) "
+            f"from {span}, accumulating {runs} runs with an average of {ave:.2f}. "
+            f"Test centuries: {centuries}, half-centuries: {fifties}."
+        )
+        return {
+            "text": text,
+            "sport": "cricket",
+            "metadata": {
+                "format": "Test",
+                "player": player,
+                "matches": str(mat),
+                "runs": str(runs),
+                "centuries": str(centuries),
+                "span": span,
+            }
+        }
+
+    # ── Cricket International Tournaments ─────────────────────────────────────
+    def cricket_tournament_to_doc(self, row: dict) -> dict:
+        player = str(row.get("Player", "Unknown"))
+        tournament = str(row.get("Tournament", ""))
+        format_type = str(row.get("Format", ""))
+        year = str(row.get("Year", ""))
+        result = str(row.get("Result", ""))
+        
+        achievement = "won" if result == "Champion" else "was runner-up in"
+        
+        text = (
+            f"International cricket: {player} {achievement} the {tournament} "
+            f"({format_type} format) in {year}."
+        )
+        return {
+            "text": text,
+            "sport": "cricket",
+            "metadata": {
+                "tournament": tournament,
+                "player": player,
+                "format": format_type,
+                "year": year,
+                "result": result,
+            }
+        }
+
+    # ── T20 International Cricket ─────────────────────────────────────────────
+    def t20_batting_to_doc(self, row: dict) -> dict:
+        player = str(row.get("Player", "Unknown"))
+        span = str(row.get("Span", ""))
+        mat = int(row.get("Mat", 0) or 0)
+        inns = int(row.get("Inns", 0) or 0)
+        runs = int(row.get("Runs", 0) or 0)
+        ave = float(row.get("Ave", 0) or 0)
+        centuries = int(row.get("100", 0) or 0)
+        fifties = int(row.get("50", 0) or 0)
+        
+        text = (
+            f"T20 International cricket: {player} played {mat} T20 matches ({inns} innings) "
+            f"from {span}, scoring {runs} runs with an average of {ave:.2f}. "
+            f"T20 centuries: {centuries}, half-centuries: {fifties}."
+        )
+        return {
+            "text": text,
+            "sport": "cricket",
+            "metadata": {
+                "format": "T20",
+                "player": player,
+                "matches": str(mat),
+                "runs": str(runs),
+                "centuries": str(centuries),
+                "span": span,
+            }
+        }
+
     # ── FIFA ─────────────────────────────────────────────────────────────────
     def fifa_summary_to_doc(self, row: dict) -> dict:
         text = (

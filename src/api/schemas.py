@@ -51,6 +51,8 @@ class QueryResponse(BaseModel):
     sources:     list[SourceChunk]
     latency_ms:  dict
     sport_filter: Optional[str] = None
+    intent:      Optional[str] = None   # bio | live | history
+    source_used: Optional[str] = None   # faiss | wikipedia | sofascore_api
 
 
 # ── /health ───────────────────────────────────────────────────────────────────

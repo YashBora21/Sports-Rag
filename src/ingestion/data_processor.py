@@ -102,7 +102,57 @@ def process_tennis(csv_path: Path) -> list[dict]:
     return docs
 
 
-# ── Cricket ───────────────────────────────────────────────────────────────────
+# ── Cricket Formats (ODI, Test, T20) ──────────────────────────────────────────
+def process_cricket_formats(data_dir: Path) -> list[dict]:
+    """Process ODI, Test, and T20 cricket format player statistics."""
+    logger.info("Processing cricket format data (ODI, Test, T20)...")
+    docs = []
+    
+    # ODI batting
+    odi_csv = data_dir / "odb.csv"
+    if odi_csv.exists():
+        df = pd.read_csv(odi_csv)
+        for _, row in tqdm(df.iterrows(), total=len(df), desc="ODI batting"):
+            try:
+                docs.append(builder.odi_batting_to_doc(row.to_dict()))
+            except Exception as e:
+                logger.warning(f"ODI row skipped: {e}")
+    
+    # Test batting
+    test_csv = data_dir / "tb.csv"
+    if test_csv.exists():
+        df = pd.read_csv(test_csv)
+        for _, row in tqdm(df.iterrows(), total=len(df), desc="Test batting"):
+            try:
+                docs.append(builder.test_batting_to_doc(row.to_dict()))
+            except Exception as e:
+                logger.warning(f"Test row skipped: {e}")
+    
+    # T20 batting
+    t20_csv = data_dir / "twb.csv"
+    if t20_csv.exists():
+        df = pd.read_csv(t20_csv)
+        for _, row in tqdm(df.iterrows(), total=len(df), desc="T20 batting"):
+            try:
+                docs.append(builder.t20_batting_to_doc(row.to_dict()))
+            except Exception as e:
+                logger.warning(f"T20 row skipped: {e}")
+    
+    # Cricket tournaments/championships
+    tournaments_csv = data_dir / "cricket_tournaments.csv"
+    if tournaments_csv.exists():
+        df = pd.read_csv(tournaments_csv)
+        for _, row in tqdm(df.iterrows(), total=len(df), desc="Cricket tournaments"):
+            try:
+                docs.append(builder.cricket_tournament_to_doc(row.to_dict()))
+            except Exception as e:
+                logger.warning(f"Tournament row skipped: {e}")
+    
+    logger.info(f"Cricket formats: {len(docs)} docs")
+    return docs
+
+
+# ── Cricket (IPL) ──────────────────────────────────────────────────────────────
 def process_cricket(data_dir: Path) -> list[dict]:
     logger.info("Processing cricket (IPL) data...")
     matches_df = pd.read_csv(data_dir / "matches.csv")
@@ -149,6 +199,7 @@ def run_all(data_dir: Path = None):
     # Cricket
     if (data_dir / "matches.csv").exists():
         docs = process_cricket(data_dir)
+        docs += process_cricket_formats(data_dir)
         save_jsonl(docs, DATA_PROCESSED / "cricket.jsonl")
         all_stats["cricket"] = len(docs)
 
