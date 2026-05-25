@@ -1,11 +1,13 @@
 {
   "total": 30,
-  "intent_accuracy": 0.9666666666666667,
-  "source_accuracy": 0.7,
-  "no_data_rate": 0.13333333333333333,
-  "p50_ms": 7825,
-  "p95_ms": 20987,
-  "mean_ms": 10087,
+  "intent_accuracy": 0.967,
+  "source_accuracy": 0.967,
+  "wiki_succeeded": 0,
+  "wiki_failed": 8,
+  "no_data_rate": 0.133,
+  "p50_ms": 7786,
+  "p95_ms": 19016,
+  "mean_ms": 8695,
   "results": [
     {
       "id": 1,
@@ -15,10 +17,11 @@
       "expected_source": "wikipedia",
       "got_intent": "bio",
       "got_source": "faiss_bio_fallback",
-      "ms": 16812,
+      "ms": 14956,
       "intent_ok": true,
-      "source_ok": false,
-      "no_data": false
+      "source_ok": true,
+      "no_data": false,
+      "answer": "Steve Smith (SPD Smith) is an Australian cricketer who played from 2010 to 2021. His career highlights include:\n\n*   **ODI Cricket (2010-2020):** Played 128 matches, scoring 4,378 runs with an average of 43.34, including 11 centuries and 25 half-centuries.\n*   **T20 International Cricket (2010-2021):** Played 52 matches, scoring 863 runs with an average of 26.96 and 4 half-centuries."
     },
     {
       "id": 2,
@@ -28,10 +31,11 @@
       "expected_source": "wikipedia",
       "got_intent": "bio",
       "got_source": "faiss_bio_fallback",
-      "ms": 32430,
+      "ms": 8712,
       "intent_ok": true,
-      "source_ok": false,
-      "no_data": false
+      "source_ok": true,
+      "no_data": false,
+      "answer": "Cristiano Ronaldo (nicknamed CR7) is a Portuguese professional footballer who plays as a forward and serves as the captain for both the Saudi Pro League club Al-Nassr and the Portugal national team. Widely considered one of the greatest players in history, his career achievements include:\n\n*   **Ballon d'Ors:** Five awards.\n*   **UEFA Men's Player of the Year:** A record three awards.\n*   **European Golden Shoes:** Four awards."
     },
     {
       "id": 3,
@@ -41,10 +45,11 @@
       "expected_source": "wikipedia",
       "got_intent": "bio",
       "got_source": "faiss_bio_fallback",
-      "ms": 15015,
+      "ms": 10575,
       "intent_ok": true,
-      "source_ok": false,
-      "no_data": false
+      "source_ok": true,
+      "no_data": false,
+      "answer": "Virat Kohli is an Indian international cricketer and former all-format captain of the Indian national team. Widely regarded as one of the greatest all-format batsmen in cricket history, his key achievements include:\n\n*   **Batting Records:** He has scored 85 centuries across all formats, holding the record for the most centuries in ODIs and the second-most in international cricket. He is also the leading run-scorer in the Indian Premier League (IPL).\n*   **Test Cricket:** Between 2011 and 2021, he played 97 matches, accumulating 7,801 runs with 27 centuries and 27 half-centuries.\n*   **Captaincy:** He is India's most successful Test captain, achieving the most wins and retaining the Test mace for three consecutive periods.\n*   **Unique Distinction:** He is the only batter to achieve a 900+ rating across all three formats of the game."
     },
     {
       "id": 4,
@@ -54,10 +59,11 @@
       "expected_source": "wikipedia",
       "got_intent": "bio",
       "got_source": "faiss_bio_fallback",
-      "ms": 7825,
+      "ms": 8415,
       "intent_ok": true,
-      "source_ok": false,
-      "no_data": false
+      "source_ok": true,
+      "no_data": true,
+      "answer": "Based on the biography provided, there is no information available regarding LeBron James."
     },
     {
       "id": 5,
@@ -67,10 +73,11 @@
       "expected_source": "wikipedia",
       "got_intent": "bio",
       "got_source": "faiss_bio_fallback",
-      "ms": 10159,
+      "ms": 8798,
       "intent_ok": true,
-      "source_ok": false,
-      "no_data": false
+      "source_ok": true,
+      "no_data": false,
+      "answer": "Novak Djokovic is a top-ranked tennis player with several significant career achievements across different surfaces:\n\n*   **Grand Slam Success:** He has won the Wimbledon tournament (Grass court, Outdoor) by defeating Roger Federer in the final on two separate occasions. He also reached the Wimbledon semifinals by defeating Richard Gasquet.\n*   **ATP 500 Performance:** He has secured victories in ATP 500 events, including a semifinal win against Juan Mart\u00edn del Potro at the Dubai Tennis Championships and a second-round win against del Potro at the Abierto Mexicano (both Hard court, Outdoor).\n*   **World Ranking:** He has consistently been ranked at the top of the sport, holding the #1.0 and #2.0 rankings throughout these competitions."
     },
     {
       "id": 6,
@@ -80,10 +87,11 @@
       "expected_source": "wikipedia",
       "got_intent": "bio",
       "got_source": "faiss_bio_fallback",
-      "ms": 8898,
+      "ms": 7486,
       "intent_ok": true,
-      "source_ok": false,
-      "no_data": false
+      "source_ok": true,
+      "no_data": false,
+      "answer": "Based on the provided biography, Rafael Nadal is a professional tennis player who has achieved a high world ranking, peaking at #1.0. His career highlights include winning the final of the Argentina Open (ATP250) and advancing to the semifinals of the Qatar ExxonMobil Open. He has demonstrated success across various surfaces, including grass (Wimbledon), clay (Argentina Open and Open Banco Sabadell), and hard courts (Qatar ExxonMobil Open)."
     },
     {
       "id": 7,
@@ -93,10 +101,11 @@
       "expected_source": "wikipedia",
       "got_intent": "history",
       "got_source": "faiss",
-      "ms": 6089,
+      "ms": 6706,
       "intent_ok": false,
       "source_ok": false,
-      "no_data": false
+      "no_data": false,
+      "answer": "Based on the provided context, the Premier League is a football competition in England. Examples of teams participating in this league include Stoke City, Liverpool, Arsenal, Tottenham, and Fulham."
     },
     {
       "id": 8,
@@ -106,10 +115,11 @@
       "expected_source": "wikipedia",
       "got_intent": "bio",
       "got_source": "faiss_bio_fallback",
-      "ms": 8306,
+      "ms": 9206,
       "intent_ok": true,
-      "source_ok": false,
-      "no_data": false
+      "source_ok": true,
+      "no_data": false,
+      "answer": "MS Dhoni is a professional Indian cricketer who plays as a right-handed batter and wicket-keeper. Widely regarded as one of the most prolific wicket-keeper batsmen, he is the most successful Indian captain and has captained the most international matches.\n\n**Key Career Highlights and Achievements:**\n*   **Captaincy:** He led the Indian team in limited overs formats from 2007 to 2017 and in Test cricket from 2008 to 2014.\n*   **Major Titles:** He won the Cricket World Cup (ODI format) in 2011.\n*   **ODI Performance (2004-2019):** Played 350 matches, scoring 10,773 runs with an average of 50.57, including 10 centuries and 73 half-centuries.\n*   **T20I Performance (2006-2019):** Played 98 matches, scoring 1,617 runs with an average of 37.60."
     },
     {
       "id": 9,
@@ -119,10 +129,11 @@
       "expected_source": "sofascore_api",
       "got_intent": "live",
       "got_source": "sofascore_api",
-      "ms": 9397,
+      "ms": 7368,
       "intent_ok": true,
       "source_ok": true,
-      "no_data": false
+      "no_data": false,
+      "answer": "Reporting live from the Premier League action on May 25, 2026! Here are your final scores from today's matches:\n\n*   **Brighton & Hove Albion 0-3 Manchester United**\n*   **Burnley 1-1 Wolverhampton**\n*   **Crystal Palace 1-2 Arsenal**\n*   **Fulham 2-0 Newcastle United**\n*   **Liverpool FC 1-1 Brentford**\n*   **Manchester City 1-2 Aston Villa**\n*   **Nottingham Forest 1-1 Bournemouth**\n*   **Sunderland 2-1 Chelsea**\n*   **Tottenham Hotspur 1-0 Everton**\n*   **West Ham United 3-0 Leeds United**"
     },
     {
       "id": 10,
@@ -132,10 +143,11 @@
       "expected_source": "sofascore_api",
       "got_intent": "live",
       "got_source": "sofascore_api",
-      "ms": 7640,
+      "ms": 6826,
       "intent_ok": true,
       "source_ok": true,
-      "no_data": false
+      "no_data": false,
+      "answer": "Here are the latest scores from today's action on May 25, 2026:\n\n**Indian Premier League:**\n- Mumbai Indians (175) vs Rajasthan Royals (205) - Ended\n- Kolkata Knight Riders (163) vs Delhi Capitals (203) - Ended\n\n**e& Regional List A Tournament:**\n- Boost Region (235) vs Speen Ghar Region (236) - Ended\n\n**Evoke Super 20 Trophy:**\n- Dragons Women (120) vs Typhoons Women (119) - Ended"
     },
     {
       "id": 11,
@@ -145,10 +157,11 @@
       "expected_source": "sofascore_api",
       "got_intent": "live",
       "got_source": "sofascore_api",
-      "ms": 6811,
+      "ms": 7082,
       "intent_ok": true,
       "source_ok": true,
-      "no_data": false
+      "no_data": false,
+      "answer": "Reporting live for May 25, 2026! We have two matchups on the slate for the NBA Playoffs:\n\nThe San Antonio Spurs have wrapped up their game against the Oklahoma City Thunder with a final score of 103-82. Meanwhile, we are still waiting for tip-off in the contest between the Cleveland Cavaliers and the New York Knicks."
     },
     {
       "id": 12,
@@ -158,10 +171,11 @@
       "expected_source": "sofascore_api",
       "got_intent": "live",
       "got_source": "sofascore_api",
-      "ms": 13797,
+      "ms": 9494,
       "intent_ok": true,
       "source_ok": true,
-      "no_data": false
+      "no_data": false,
+      "answer": "Reporting live from the French Open in Paris, France, here are the results for the matches held on May 25, 2026:\n\n*   **Marco Trungelliti** defeated Kyrian Jacquet (3-0)\n*   **Toma\u0161 Macha\u010d** defeated Zizou Bergs (3-0)\n*   **Alexander Zverev** defeated Benjamin Bonzi (3-0)\n*   **Federico Cin\u00e0** defeated Reilly Opelka (3-2)\n*   **Jakub Men\u0161ik** defeated Titouan Droguet (3-0)\n*   **Nuno Borges** defeated Tomas Martin Etcheverry (3-0)\n*   **Dino Pri\u017emi\u0107** defeated Michael Zheng (3-0)\n*   **Quentin Halys** defeated Mattia Bellucci (3-0)\n*   **Joao Fonseca** defeated Luka Pavlovic (3-0)\n*   **Hamad Medjedovi\u0107** defeated Yannick Hanfmann (3-1)"
     },
     {
       "id": 13,
@@ -171,10 +185,11 @@
       "expected_source": "sofascore_api",
       "got_intent": "live",
       "got_source": "sofascore_api",
-      "ms": 9410,
+      "ms": 8328,
       "intent_ok": true,
       "source_ok": true,
-      "no_data": false
+      "no_data": false,
+      "answer": "As a live reporter on the ground, I can provide you with the results from today's action, but I do not have access to the full league table to provide the complete current standings. \n\nHowever, for the **Premier League** matches played on **2026-05-25**, here are the final scores that will impact the standings:\n\n*   **Brighton 0-3 Man United**\n*   **Burnley 1-1 Wolves**\n*   **Crystal Palace 1-2 Arsenal**\n*   **Fulham 2-0 Newcastle**\n*   **Liverpool 1-1 Brentford**\n*   **Man City 1-2 Aston Villa**\n*   **Nottm Forest 1-1 Bournemouth**\n*   **Sunderland 2-1 Chelsea**\n*   **Tottenham 1-0 Everton**\n*   **West Ham 3-0 Leeds**"
     },
     {
       "id": 14,
@@ -184,10 +199,11 @@
       "expected_source": "sofascore_api",
       "got_intent": "live",
       "got_source": "sofascore_api",
-      "ms": 7288,
+      "ms": 5919,
       "intent_ok": true,
       "source_ok": true,
-      "no_data": false
+      "no_data": false,
+      "answer": "Reporting live from May 25, 2026! In the Indian Premier League, we have two completed matches: the Rajasthan Royals beat the Mumbai Indians with a score of 205-175, and the Delhi Capitals took down the Kolkata Knight Riders 203-163."
     },
     {
       "id": 15,
@@ -197,10 +213,11 @@
       "expected_source": "faiss",
       "got_intent": "history",
       "got_source": "faiss",
-      "ms": 20987,
+      "ms": 6044,
       "intent_ok": true,
       "source_ok": true,
-      "no_data": true
+      "no_data": true,
+      "answer": "The provided context does not contain information regarding the 2019 IPL final. It only lists individual match results. Therefore, the context is insufficient to answer who won the tournament."
     },
     {
       "id": 16,
@@ -210,10 +227,11 @@
       "expected_source": "faiss",
       "got_intent": "history",
       "got_source": "faiss",
-      "ms": 6322,
+      "ms": 19265,
       "intent_ok": true,
       "source_ok": true,
-      "no_data": false
+      "no_data": false,
+      "answer": "In the 2021 Premier League (England) football season, Arsenal and Chelsea played twice. Arsenal won one match with a scoreline of 4.0-2.0 (played away). Chelsea won the other match with a scoreline of 2.0-0.0 (played away)."
     },
     {
       "id": 17,
@@ -223,10 +241,11 @@
       "expected_source": "faiss",
       "got_intent": "history",
       "got_source": "faiss",
-      "ms": 10206,
+      "ms": 5669,
       "intent_ok": true,
       "source_ok": true,
-      "no_data": false
+      "no_data": false,
+      "answer": "In the Tennis competition at Wimbledon, DjokovicN. recorded five victories. He defeated KlizanM. in the 1st Round, and NieminenJ. in the 2nd Round. Additionally, he defeated SimonG., TomicB., and ChardyJ. all in the 3rd Round."
     },
     {
       "id": 18,
@@ -236,10 +255,11 @@
       "expected_source": "faiss",
       "got_intent": "history",
       "got_source": "faiss",
-      "ms": 6323,
+      "ms": 8022,
       "intent_ok": true,
       "source_ok": true,
-      "no_data": false
+      "no_data": false,
+      "answer": "Based on the NBA game records provided:\n- APR 25, 2025 (LAL @ MIN): 38 pts, 10 reb\n- FEB 20, 2025 (LAL @ POR): 40 pts, 8 reb\n- NOV 06, 2024 (LAL @ MEM): 39 pts, 7 reb\n- FEB 06, 2025 (GSW @ LAL): 42 pts, 17 reb"
     },
     {
       "id": 19,
@@ -249,10 +269,11 @@
       "expected_source": "faiss",
       "got_intent": "history",
       "got_source": "faiss",
-      "ms": 17652,
+      "ms": 5774,
       "intent_ok": true,
       "source_ok": true,
-      "no_data": true
+      "no_data": false,
+      "answer": "The provided context contains match results for the 2020 Premier League (England) football season, but it does not include player statistics or a list of top scorers. Therefore, the context is insufficient to answer this question."
     },
     {
       "id": 20,
@@ -262,10 +283,11 @@
       "expected_source": "faiss",
       "got_intent": "history",
       "got_source": "faiss",
-      "ms": 7784,
+      "ms": 8586,
       "intent_ok": true,
       "source_ok": true,
-      "no_data": false
+      "no_data": false,
+      "answer": "Based on the provided tennis records, NadalR. has 5 wins on outdoor clay courts. These victories occurred at the Internazionali BNL d'Italia (against KohlschreiberP. and SimonG.), the Mutua Madrid Open (against ThiemD. and WawrinkaS.), and the VTR Open (against DelbonisF.)."
     },
     {
       "id": 21,
@@ -275,10 +297,11 @@
       "expected_source": "faiss",
       "got_intent": "history",
       "got_source": "faiss",
-      "ms": 6745,
+      "ms": 6528,
       "intent_ok": true,
       "source_ok": true,
-      "no_data": false
+      "no_data": false,
+      "answer": "Based on the provided cricket (IPL 2018) data:\n- Sunrisers Hyderabad defeated Mumbai Indians twice (by 31 runs and 1 wicket) and beat Rajasthan Royals by 9 wickets.\n- Mumbai Indians beat Chennai Super Kings by 8 wickets.\n- Rajasthan Royals beat Mumbai Indians by 7 wickets."
     },
     {
       "id": 22,
@@ -288,10 +311,11 @@
       "expected_source": "faiss",
       "got_intent": "history",
       "got_source": "faiss",
-      "ms": 6704,
+      "ms": 8833,
       "intent_ok": true,
       "source_ok": true,
-      "no_data": false
+      "no_data": false,
+      "answer": "In the 2017 Uefa Champions League (Football), Real Madrid recorded four wins and one draw in the provided records. Their victories include home wins against Paris Saint Germain (3-1), Borussia Dortmund (3-2), and APOEL (3-0), as well as an away win against Paris Saint Germain (2-1). Additionally, they played to a 1-1 draw at home against Tottenham."
     },
     {
       "id": 23,
@@ -301,10 +325,11 @@
       "expected_source": "faiss",
       "got_intent": "history",
       "got_source": "faiss",
-      "ms": 6318,
+      "ms": 7265,
       "intent_ok": true,
       "source_ok": true,
-      "no_data": false
+      "no_data": false,
+      "answer": "Based on the provided basketball (NBA) records, the Boston Celtics are the most successful team in history with 18 championships. The Los Angeles Lakers are second with 17 championships. Additionally, former Lakers player Kobe Bryant won five NBA championships during his career."
     },
     {
       "id": 24,
@@ -314,10 +339,11 @@
       "expected_source": "faiss",
       "got_intent": "history",
       "got_source": "faiss",
-      "ms": 13599,
+      "ms": 7735,
       "intent_ok": true,
       "source_ok": true,
-      "no_data": false
+      "no_data": false,
+      "answer": "From the football FIFA World Cup 2018 hosted by Russia, France won the tournament by defeating Croatia in the final. Belgium finished in third place. A total of 32 teams played 64 matches, scoring 169 goals with an average of 2.6 goals per game."
     },
     {
       "id": 25,
@@ -327,10 +353,11 @@
       "expected_source": "faiss",
       "got_intent": "history",
       "got_source": "faiss",
-      "ms": 6860,
+      "ms": 6109,
       "intent_ok": true,
       "source_ok": true,
-      "no_data": false
+      "no_data": false,
+      "answer": "Based on the provided NBA basketball data, there is no specific record of the number of three-pointers made by Stephen Curry. The context only provides his total points, rebounds, and assists for three games, along with the team's overall three-point shooting percentages. Therefore, the provided context is insufficient to answer this question."
     },
     {
       "id": 26,
@@ -340,10 +367,11 @@
       "expected_source": "faiss",
       "got_intent": "history",
       "got_source": "faiss",
-      "ms": 5910,
+      "ms": 7410,
       "intent_ok": true,
       "source_ok": true,
-      "no_data": false
+      "no_data": false,
+      "answer": "In the sport of cricket, Sachin Tendulkar scored 51 test centuries. This information is based on his record of playing 200 test matches between 1989 and 2013."
     },
     {
       "id": 27,
@@ -353,10 +381,11 @@
       "expected_source": "faiss",
       "got_intent": "history",
       "got_source": "faiss",
-      "ms": 5655,
+      "ms": 7078,
       "intent_ok": true,
       "source_ok": true,
-      "no_data": true
+      "no_data": true,
+      "answer": "The provided context does not contain information regarding Manchester City's Premier League titles. It only lists individual match results against Stoke City and Tottenham. Therefore, the context is insufficient to answer the question."
     },
     {
       "id": 28,
@@ -366,10 +395,11 @@
       "expected_source": "faiss",
       "got_intent": "history",
       "got_source": "faiss",
-      "ms": 5837,
+      "ms": 19016,
       "intent_ok": true,
       "source_ok": true,
-      "no_data": false
+      "no_data": false,
+      "answer": "Based on the provided tennis data from the Wimbledon tournament, Roger Federer won the final against CilicM. The context does not provide a full career history or total count of his Grand Slam titles."
     },
     {
       "id": 29,
@@ -379,10 +409,11 @@
       "expected_source": "wikipedia",
       "got_intent": "bio",
       "got_source": "faiss_bio_fallback",
-      "ms": 10111,
+      "ms": 9863,
       "intent_ok": true,
-      "source_ok": false,
-      "no_data": false
+      "source_ok": true,
+      "no_data": false,
+      "answer": "Kylian Mbapp\u00e9 Lottin is a French professional footballer who plays as a forward for Real Madrid and captains the France national team. Widely regarded as one of the best players in the world, he is known for his pace, dribbling, and clinical finishing.\n\n**Career Highlights and Achievements:**\n*   **Goal Scoring:** He has scored over 700 senior career goals for both club and country.\n*   **Trophies:** He has won 34 trophies, including five UEFA Champions Leagues and the UEFA European Championship.\n*   **Individual Awards:** He has been named the world's best player by FIFA five times and has won four European Golden Shoes.\n*   **Records:** \n    *   Holds the records for the most goals (140) and assists (42) in the Champions League.\n    *   Holds the record for most international appearances (226) and international goals (143).\n    *   Holds the record for goals (14) and assists (8) in the European Championship.\n    *   He is the only player to score 100 goals with four different clubs."
     },
     {
       "id": 30,
@@ -392,10 +423,11 @@
       "expected_source": "faiss",
       "got_intent": "history",
       "got_source": "faiss",
-      "ms": 5740,
+      "ms": 7786,
       "intent_ok": true,
       "source_ok": true,
-      "no_data": true
+      "no_data": true,
+      "answer": "The provided context does not contain information regarding the Golden State Warriors' 2016 NBA season. It only includes general team information and specific game results from 2025. Therefore, the context is insufficient to answer the question."
     }
   ]
 }

@@ -1,0 +1,458 @@
+[
+  {
+    "question":"Who is Steve Smith?",
+    "answer":"Steve Smith (SPD Smith) is an Australian cricketer who played across two formats between 2010 and 2021:\n\n*   **ODI Cricket (2010\u20132020):** He played 128 matches, scoring 4,378 runs at an average of 43.34, with 11 centuries and 25 half-centuries.\n*   **T20 International Cricket (2010\u20132021):** He played 52 matches, scoring 863 runs at an average of 26.96, with 4 half-centuries.",
+    "contexts":[
+      "ODI cricket: GC Smith (Afr\/SA) played 197 matches (194 innings) from 2002-2013, scoring 6989 runs with an average of 37.98. International centuries: 10, half-centuries: 47.",
+      "Test cricket: GC Smith (ICC\/SA) played 117 test matches (205 innings) from 2002-2014, accumulating 9265 runs with an average of 48.25. Test centuries: 27, half-centuries: 38.",
+      "T20 International cricket: GC Smith (SA) played 33 T20 matches (33 innings) from 2005-2011, scoring 982 runs with an average of 31.67. T20 centuries: 0, half-centuries: 5.",
+      "ODI cricket: SPD Smith (AUS) played 128 matches (113 innings) from 2010-2020, scoring 4378 runs with an average of 43.34. International centuries: 11, half-centuries: 25.",
+      "T20 International cricket: SPD Smith (AUS) played 52 T20 matches (41 innings) from 2010-2021, scoring 863 runs with an average of 26.96. T20 centuries: 0, half-centuries: 4."
+    ],
+    "ground_truth":"Steve Smith is an Australian international cricketer and former captain of the Australian national team.",
+    "faithfulness":null,
+    "answer_relevancy":null,
+    "context_precision":null,
+    "context_recall":null
+  },
+  {
+    "question":"Who is Cristiano Ronaldo?",
+    "answer":"Cristiano Ronaldo (nicknamed CR7) is a Portuguese professional footballer who plays as a forward and captains both the Portugal national team and the Saudi Pro League club Al-Nassr. Widely regarded as one of the greatest players in history, his career achievements include:\n\n*   **Ballon d'Ors:** Five awards.\n*   **UEFA Men's Player of the Year:** A record three awards.\n*   **European Golden Shoes:** Four awards.",
+    "contexts":[
+      "Cristiano Ronaldo: Cristiano Ronaldo dos Santos Aveiro, nicknamed CR7, is a Portuguese professional footballer who plays as a forward for and captains both Saudi Pro League club Al-Nassr and the Portugal national team. Widely regarded as one of the greatest players in history, he has won numerous individual accolades throughout his career, including five Ballon d'Ors, a record three UEFA Men's Player of the Year Awards, and four European Golden Shoes.",
+      "Cristiano Ronaldo: Cristiano Ronaldo dos Santos Aveiro, nicknamed CR7, is a Portuguese professional footballer who plays as a forward for and captains both Saudi Pro League club Al-Nassr and the Portugal national team. Widely regarded as one of the greatest players in history, he has won numerous individual accolades throughout his career, including five Ballon d'Ors, a record three UEFA Men's Player of the Year Awards, and four European Golden Shoes.",
+      "Ronaldinho: Ronaldo de Assis Moreira, commonly known as Ronaldinho Ga\u00facho or simply Ronaldinho, is a Brazilian former professional footballer who played as an attacking midfielder or left winger. Widely regarded as one of the greatest players of all time, he won two FIFA World Player of the Year awards and a Ballon d'Or. He is the only player ever to have won a World Cup, a Copa Am\u00e9rica, a Confederations Cup, a Champions League, a Copa Libertadores and a Ballon d'Or.",
+      "Ronaldinho: Ronaldo de Assis Moreira, commonly known as Ronaldinho Ga\u00facho or simply Ronaldinho, is a Brazilian former professional footballer who played as an attacking midfielder or left winger. Widely regarded as one of the greatest players of all time, he won two FIFA World Player of the Year awards and a Ballon d'Or. He is the only player ever to have won a World Cup, a Copa Am\u00e9rica, a Confederations Cup, a Champions League, a Copa Libertadores and a Ballon d'Or.",
+      "ns League, a Copa Libertadores and a Ballon d'Or. A global icon of the sport, Ronaldinho was renowned for his dribbling abilities, free-kick accuracy, his use of tricks, feints, no-look passes, and overhead kicks, as well as his ability to score and create goals. Also known by the nickname \"O Bruxo\", during his career, he was one of the most valuable sportsmen in the world."
+    ],
+    "ground_truth":"Cristiano Ronaldo is a Portuguese professional footballer widely regarded as one of the greatest football players.",
+    "faithfulness":null,
+    "answer_relevancy":null,
+    "context_precision":null,
+    "context_recall":null
+  },
+  {
+    "question":"Tell me about Virat Kohli",
+    "answer":"Virat Kohli is an Indian international cricketer and the former all-format captain of the Indian national team. A right-handed batter and occasional right-arm medium pace bowler, he is regarded as one of the greatest all-format batsmen in cricket history.\n\n**Career Highlights and Achievements:**\n*   **Batting Records:** He holds the record for the most centuries in ODIs and the second-most centuries in international cricket, with 85 tons across all formats. He is also the leading run-scorer in the Indian Premier League (IPL).\n*   **Test Cricket:** Between 2011 and 2021, he played 97 matches, scoring 7,801 runs with an average of 50.65, including 27 centuries and 27 half-centuries.\n*   **Captaincy:** He is India's most successful Test captain, achieving the most wins and three consecutive Test mace retainments.\n*   **Unique Milestone:** He is the only batter to earn 900+ rating points across all three formats of the game.",
+    "contexts":[
+      "Virat Kohli: Virat Kohli is an Indian international cricketer and the former all-format captain of the Indian national cricket team. He is a right-handed batter and occasional right-arm medium pace bowler. Considered one of the greatest all-format batsmen in the history of cricket, he has been acclaimed for his batting skills, records and ability to lead his team to victory. Kohli has the most centuries in ODIs and the second-most centuries in international cricket with 85 tons across all formats.",
+      "Virat Kohli: Virat Kohli is an Indian international cricketer and the former all-format captain of the Indian national cricket team. He is a right-handed batter and occasional right-arm medium pace bowler. Considered one of the greatest all-format batsmen in the history of cricket, he has been acclaimed for his batting skills, records and ability to lead his team to victory. Kohli has the most centuries in ODIs and the second-most centuries in international cricket with 85 tons across all formats.",
+      "Test cricket: V Kohli (INDIA) played 97 test matches (164 innings) from 2011-2021, accumulating 7801 runs with an average of 50.65. Test centuries: 27, half-centuries: 27.",
+      "national cricket with 85 tons across all formats. He is also the leading run-scorer in the Indian Premier League. Kohli is the most successful Test captain of India with most wins and 3 consecutive Test mace retainments. He is the only batter to earn 900+ rating points across all 3 formats.",
+      "national cricket with 85 tons across all formats. He is also the leading run-scorer in the Indian Premier League. Kohli is the most successful Test captain of India with most wins and 3 consecutive Test mace retainments. He is the only batter to earn 900+ rating points across all 3 formats."
+    ],
+    "ground_truth":"Virat Kohli is an Indian international cricketer and former captain of the Indian national team.",
+    "faithfulness":null,
+    "answer_relevancy":null,
+    "context_precision":null,
+    "context_recall":null
+  },
+  {
+    "question":"Who is LeBron James?",
+    "answer":"Based on the biography provided, there is no information available regarding LeBron James.",
+    "contexts":[
+      "Magic Johnson: Earvin \"Magic\" Johnson Jr. is an American businessman and former professional basketball player. Widely regarded as the greatest point guard of all time, Johnson spent his entire career with the Los Angeles Lakers in the National Basketball Association (NBA). After winning a national championship with the Michigan State Spartans in 1979, Johnson was selected first overall in the 1979 NBA draft by the Lakers, then led the team to five NBA championships during their \"Showtime\" era.",
+      "Magic Johnson: Earvin \"Magic\" Johnson Jr. is an American businessman and former professional basketball player. Widely regarded as the greatest point guard of all time, Johnson spent his entire career with the Los Angeles Lakers in the National Basketball Association (NBA). After winning a national championship with the Michigan State Spartans in 1979, Johnson was selected first overall in the 1979 NBA draft by the Lakers, then led the team to five NBA championships during their \"Showtime\" era.",
+      "Tim Duncan: Timothy Theodore Duncan is an American former professional basketball player and coach who spent his entire 19-year career with the San Antonio Spurs in the National Basketball Association (NBA). Nicknamed \"the Big Fundamental\", he is widely considered to be the greatest power forward of all time and one of the greatest players in NBA history, and was a central contributor to the franchise's success during the 2000s and 2010s.",
+      "Tim Duncan: Timothy Theodore Duncan is an American former professional basketball player and coach who spent his entire 19-year career with the San Antonio Spurs in the National Basketball Association (NBA). Nicknamed \"the Big Fundamental\", he is widely considered to be the greatest power forward of all time and one of the greatest players in NBA history, and was a central contributor to the franchise's success during the 2000s and 2010s.",
+      "Kobe Bryant: Kobe Bean Bryant was an American professional basketball player. A shooting guard, he spent his entire 20-year career with the Los Angeles Lakers in the National Basketball Association (NBA). Bryant won five NBA championships and was an 18-time All-Star, four-time All-Star MVP, 15-time member of the All-NBA Team, 12-time member of the All-Defensive Team, the 2008 NBA Most Valuable Player (MVP), two-time NBA Finals MVP, and two-time scoring champion."
+    ],
+    "ground_truth":"LeBron James is an American professional basketball player and one of the greatest players in NBA history.",
+    "faithfulness":null,
+    "answer_relevancy":null,
+    "context_precision":null,
+    "context_recall":null
+  },
+  {
+    "question":"Tell me about Novak Djokovic",
+    "answer":"Novak Djokovic has achieved significant success across multiple tournaments, particularly at Wimbledon, where he has won titles by defeating Roger Federer in the finals (while ranked both #2.0 and #1.0). His career highlights include:\n\n*   **Grand Slam Success:** He has multiple victories at Wimbledon (Grass court), including wins over Roger Federer in the finals and Richard Gasquet in the semifinals.\n*   **ATP 500 Performances:** He reached the semifinals of the Dubai Tennis Championships by defeating Juan Mart\u00edn del Potro. He also secured a 2nd Round victory against del Potro at the Abierto Mexicano.\n*   **World Ranking:** He has consistently held top-tier positions, fluctuating between the #1.0 and #2.0 rankings.",
+    "contexts":[
+      "DjokovicN. (ranked #1.0) defeated DelPotroJ.M. (ranked #7.0) in the Semifinals of the DubaiTennisChampionships tournament (ATP500, Hard court, Outdoor).",
+      "DjokovicN. (ranked #1.0) defeated GasquetR. (ranked #20.0) in the Semifinals of the Wimbledon tournament (GrandSlam, Grass court, Outdoor).",
+      "DjokovicN. (ranked #2.0) defeated FedererR. (ranked #4.0) in the TheFinal of the Wimbledon tournament (GrandSlam, Grass court, Outdoor).",
+      "DjokovicN. (ranked #1.0) defeated FedererR. (ranked #2.0) in the TheFinal of the Wimbledon tournament (GrandSlam, Grass court, Outdoor).",
+      "DjokovicN. (ranked #2.0) defeated DelPotroJ.M. (ranked #32.0) in the 2ndRound of the AbiertoMexicano tournament (ATP500, Hard court, Outdoor)."
+    ],
+    "ground_truth":"Novak Djokovic is a Serbian professional tennis player and one of the most successful players in tennis history.",
+    "faithfulness":null,
+    "answer_relevancy":null,
+    "context_precision":null,
+    "context_recall":null
+  },
+  {
+    "question":"Who is Rafael Nadal?",
+    "answer":"Based on the provided text, Rafael Nadal is a professional tennis player who has achieved the following:\n\n*   **World Ranking:** He has been ranked as high as #1.0 in the world.\n*   **Tournament Achievements:** \n    *   Won the final of the ArgentinaOpen (ATP250) on clay courts.\n    *   Reached the semifinals of the QatarExxonMobilOpen (ATP250) on hard courts.\n    *   Reached the quarterfinals of the OpenBancoSabadell (ATP500) on clay courts.\n    *   Competed in the Wimbledon Grand Slam on grass courts.\n*   **Notable Opponents Defeated:** He has secured victories against players including J. Monaco, J. Millman, P. Gojowczyk, and A. Ramos.",
+    "contexts":[
+      "NadalR. (ranked #2.0) defeated MillmanJ. (ranked #137.0) in the 1stRound of the Wimbledon tournament (GrandSlam, Grass court, Outdoor).",
+      "NadalR. (ranked #4.0) defeated MonacoJ. (ranked #60.0) in the TheFinal of the ArgentinaOpen tournament (ATP250, Clay court, Outdoor).",
+      "NadalR. (ranked #1.0) defeated GojowczykP. (ranked #162.0) in the Semifinals of the QatarExxonMobilOpen tournament (ATP250, Hard court, Outdoor).",
+      "NadalR. (ranked #5.0) defeated MonacoJ. (ranked #55.0) in the 2ndRound of the ArgentinaOpen tournament (ATP250, Clay court, Outdoor).",
+      "NadalR. (ranked #5.0) defeated RamosA. (ranked #64.0) in the Quarterfinals of the OpenBancoSabadell tournament (ATP500, Clay court, Outdoor)."
+    ],
+    "ground_truth":"Rafael Nadal is a Spanish professional tennis player known for his dominance on clay courts.",
+    "faithfulness":null,
+    "answer_relevancy":null,
+    "context_precision":null,
+    "context_recall":null
+  },
+  {
+    "question":"What is the Premier League?",
+    "answer":"Based on the provided context, the Premier League is a football competition in England. The records indicate it features clubs such as Stoke City, Liverpool, Arsenal, Tottenham, and Fulham.",
+    "contexts":[
+      "STOKE CITY won against LIVERPOOL with a scoreline of 6.0-1.0 in the Premier League (England) during the 2014 season, played home.",
+      "STOKE CITY won against ARSENAL with a scoreline of 1.0-0.0 in the Premier League (England) during the 2017 season, played home.",
+      "STOKE CITY lost against TOTTENHAM with a scoreline of 1.0-5.0 in the Premier League (England) during the 2017 season, played away.",
+      "STOKE CITY won against FULHAM with a scoreline of 4.0-1.0 in the Premier League (England) during the 2013 season, played home.",
+      "Virgil van Dijk: Virgil van Dijk is a Dutch professional footballer who plays as a centre-back for and captains both Premier League club Liverpool and the Netherlands national team. Widely regarded as one of the best defenders of his generation, and one of the greatest defenders in Premier League history, he is known for his strength, leadership, speed and aerial ability."
+    ],
+    "ground_truth":"The Premier League is the top professional football league in England.",
+    "faithfulness":null,
+    "answer_relevancy":null,
+    "context_precision":null,
+    "context_recall":null
+  },
+  {
+    "question":"Who is MS Dhoni?",
+    "answer":"MS Dhoni is an Indian professional cricketer who plays as a right-handed batter and wicket-keeper. He is widely regarded as one of the most successful Indian captains and one of the most prolific wicket-keeper batsmen in the sport.\n\n**Career Highlights and Achievements:**\n*   **Captaincy:** He served as the captain of the Indian cricket team in limited-overs formats (2007\u20132017) and in Test cricket (2008\u20132014), captaining the most international matches of any Indian captain.\n*   **Major Victory:** He led India to win the Cricket World Cup (ODI format) in 2011.\n*   **ODI Performance:** Between 2004 and 2019, he played 350 matches, scoring 10,773 runs with an average of 50.57, including 10 centuries and 73 half-centuries.\n*   **T20I Performance:** Between 2006 and 2019, he played 98 matches, scoring 1,617 runs with an average of 37.60.",
+    "contexts":[
+      "MS Dhoni: Mahendra Singh Dhoni is an Indian professional cricketer who plays as a right-handed batter and a wicket-keeper. Widely regarded as one of the most prolific wicket-keeper batsmen and captains, he represented the Indian cricket team and was the captain of the team in limited overs formats from 2007 to 2017 and in Test cricket from 2008 to 2014. Dhoni has captained the most international matches and is the most successful Indian captain.",
+      "MS Dhoni: Mahendra Singh Dhoni is an Indian professional cricketer who plays as a right-handed batter and a wicket-keeper. Widely regarded as one of the most prolific wicket-keeper batsmen and captains, he represented the Indian cricket team and was the captain of the team in limited overs formats from 2007 to 2017 and in Test cricket from 2008 to 2014. Dhoni has captained the most international matches and is the most successful Indian captain.",
+      "ODI cricket: MS Dhoni (Asia\/INDIA) played 350 matches (297 innings) from 2004-2019, scoring 10773 runs with an average of 50.57. International centuries: 10, half-centuries: 73.",
+      "T20 International cricket: MS Dhoni (INDIA) played 98 T20 matches (85 innings) from 2006-2019, scoring 1617 runs with an average of 37.60. T20 centuries: 0, half-centuries: 2.",
+      "International cricket: MS Dhoni won the Cricket World Cup (ODI format) in 2011."
+    ],
+    "ground_truth":"MS Dhoni is a former Indian international cricketer and one of India's most successful captains.",
+    "faithfulness":null,
+    "answer_relevancy":null,
+    "context_precision":null,
+    "context_recall":null
+  },
+  {
+    "question":"Live football scores today",
+    "answer":"Reporting live from the Premier League action on May 25, 2026! Here are the final scores from today's matches:\n\n*   **Brighton & Hove Albion 0-3 Manchester United**\n*   **Burnley 1-1 Wolverhampton**\n*   **Crystal Palace 1-2 Arsenal**\n*   **Fulham 2-0 Newcastle United**\n*   **Liverpool FC 1-1 Brentford**\n*   **Manchester City 1-2 Aston Villa**\n*   **Nottingham Forest 1-1 Bournemouth**\n*   **Sunderland 2-1 Chelsea**\n*   **Tottenham Hotspur 1-0 Everton**\n*   **West Ham United 3-0 Leeds United**",
+    "contexts":[
+      "[LIVE] Brighton & Hove Albion vs Manchester United | Premier League | Score: 0-3 | Status: Ended | Date: 2026-05-25\n[LIVE] Burnley vs Wolverhampton | Premier League | Score: 1-1 | Status: Ended | Date: 2026-05-25\n[LIVE] Crystal Palace vs Arsenal | Premier League | Score: 1-2 | Status: Ended | Date: 2026-05-25\n[LIVE] Fulham vs Newcastle United | Premier League | Score: 2-0 | Status: Ended | Date: 2026-05-25\n[LIVE] Liverpool FC vs Brentford | Premier League | Score: 1-1 | Status: Ended | Date: 2026-05-25\n[LIVE] Manchester City vs Aston Villa | Premier League | Score: 1-2 | Status: Ended | Date: 2026-05-25\n[LIVE] Nottingham Forest vs Bournemouth | Premier League | Score: 1-1 | Status: Ended | Date: 2026-05-25\n[LIVE] Sunderland vs Chelsea | Premier League | Score: 2-1 | Status: Ended | Date: 2026-05-25\n[LIVE] Tottenham Hotspur vs Everton | Premier League | Score: 1-0 | Status: Ended | Date: 2026-05-25\n[LIVE] West Ham United vs Leeds United | Premier League | Score: 3-0 | Status: Ended | Date: 2026-05-25"
+    ],
+    "ground_truth":"This requires current live football scores from a live sports API.",
+    "faithfulness":null,
+    "answer_relevancy":null,
+    "context_precision":null,
+    "context_recall":null
+  },
+  {
+    "question":"What is the current cricket score?",
+    "answer":"Reporting live from May 25, 2026! We have several results coming in across different competitions:\n\nIn the **Indian Premier League**, the Rajasthan Royals defeated the Mumbai Indians with a score of 205-175, and the Delhi Capitals beat the Kolkata Knight Riders 203-163. \n\nOver in the **e& Regional List A Tournament**, it was a nail-biter as Speen Ghar Region edged out Boost Region 236-235. \n\nFinally, in the **Evoke Super 20 Trophy**, the Dragons Women secured a narrow victory over the Typhoons Women, finishing 120-119.",
+    "contexts":[
+      "[LIVE] Mumbai Indians vs Rajasthan Royals | Indian Premier League | Score: 175-205 | Status: Ended | Date: 2026-05-25\n[LIVE] Kolkata Knight Riders vs Delhi Capitals | Indian Premier League | Score: 163-203 | Status: Ended | Date: 2026-05-25\n[LIVE] Boost Region vs Speen Ghar Region | e& Regional List A Tournament | Score: 235-236 | Status: Ended | Date: 2026-05-25\n[LIVE] Band-e-Amir Region vs Amo Region | e& Regional List A Tournament | Score: TBD | Status: Not started | Date: 2026-05-25\n[LIVE] Dragons Women vs Typhoons Women | Evoke Super 20 Trophy | Score: 120-119 | Status: Ended | Date: 2026-05-25\n[LIVE] Typhoons Women vs Dragons Women | Evoke Super 20 Trophy | Score: TBD | Status: Not started | Date: 2026-05-25\n[LIVE] Badureliya Sports Club vs Tamil Union Cricket and Athletic Club | Major Clubs T20 Tournament, Group A | Score: TBD | Status: Not started | Date: 2026-05-25\n[LIVE] Kurunegala Youth Cricket Club vs Nugegoda Sports Welfare Club | Major Clubs T20 Tournament, Group A | Score: TBD | Status: Not started | Date: 2026-05-25\n[LIVE] Colombo Cricket Club vs Moors Sports Club | Major Clubs T20 Tournament, Group A | Score: TBD | Status: Not started | Date: 2026-05-25\n[LIVE] Nondescripts Cricket Club vs Panadura Sports Club | Major Clubs T20 Tournament, Group B | Score: TBD | Status: Not started | Date: 2026-05-25"
+    ],
+    "ground_truth":"This requires current live cricket score data from a live sports API.",
+    "faithfulness":null,
+    "answer_relevancy":null,
+    "context_precision":null,
+    "context_recall":null
+  },
+  {
+    "question":"Today's NBA games",
+    "answer":"Reporting live for May 25, 2026! Here is the latest from the NBA Playoffs:\n\nThe San Antonio Spurs have secured a victory over the Oklahoma City Thunder with a final score of 103-82. Additionally, we are awaiting the tip-off for the matchup between the Cleveland Cavaliers and the New York Knicks.",
+    "contexts":[
+      "[LIVE] San Antonio Spurs vs Oklahoma City Thunder | NBA, Playoffs | Score: 103-82 | Status: Ended | Date: 2026-05-25\n[LIVE] Cleveland Cavaliers vs New York Knicks | NBA, Playoffs | Score: TBD | Status: Not started | Date: 2026-05-25\n[LIVE] Olympiacos BC vs Real Madrid | Euroleague, Playoffs | Score: 92-85 | Status: Ended | Date: 2026-05-25\n[LIVE] KK Budu\u0107nost VOLI vs BC Dubai | AdmiralBet ABA League, Playoffs | Score: TBD | Status: Not started | Date: 2026-05-25\n[LIVE] Dolomiti Energia Trento vs Virtus Bologna | Lega A Basket, Playoffs | Score: 81-90 | Status: Ended | Date: 2026-05-25\n[LIVE] Bertram Derthona Tortona vs Umana Reyer Venezia | Lega A Basket, Playoffs | Score: 89-71 | Status: Ended | Date: 2026-05-25\n[LIVE] Germani Brescia vs Pallacanestro Trieste | Lega A Basket, Playoffs | Score: TBD | Status: Not started | Date: 2026-05-25\n[LIVE] Surne Bilbao Basket vs B\u00e0squet Girona | Liga ACB | Score: 86-80 | Status: Ended | Date: 2026-05-25\n[LIVE] Basket Zaragoza vs UCAM Murcia | Liga ACB | Score: 90-100 | Status: Ended | Date: 2026-05-25\n[LIVE] For\u00e7a Lleida CE vs MoraBanc Andorra | Liga ACB | Score: 88-116 | Status: Ended | Date: 2026-05-25"
+    ],
+    "ground_truth":"This requires the current NBA schedule from a live sports API.",
+    "faithfulness":null,
+    "answer_relevancy":null,
+    "context_precision":null,
+    "context_recall":null
+  },
+  {
+    "question":"Latest tennis results",
+    "answer":"Reporting live from the French Open in Paris! Here are the latest results from the competition on May 25, 2026:\n\n*   **Marco Trungelliti** defeated Kyrian Jacquet (3-0)\n*   **Toma\u0161 Macha\u010d** defeated Zizou Bergs (3-0)\n*   **Alexander Zverev** defeated Benjamin Bonzi (3-0)\n*   **Federico Cin\u00e0** defeated Reilly Opelka (3-2)\n*   **Jakub Men\u0161ik** defeated Titouan Droguet (3-0)\n*   **Nuno Borges** defeated Tomas Martin Etcheverry (3-0)\n*   **Dino Pri\u017emi\u0107** defeated Michael Zheng (3-0)\n*   **Quentin Halys** defeated Mattia Bellucci (3-0)\n*   **Joao Fonseca** defeated Luka Pavlovic (3-0)\n*   **Hamad Medjedovi\u0107** defeated Yannick Hanfmann (3-1)",
+    "contexts":[
+      "[LIVE] Kyrian Jacquet vs Marco Trungelliti | French Open, Paris, France | Score: 0-3 | Status: Ended | Date: 2026-05-25\n[LIVE] Toma\u0161 Macha\u010d vs Zizou Bergs | French Open, Paris, France | Score: 3-0 | Status: Ended | Date: 2026-05-25\n[LIVE] Benjamin Bonzi vs Alexander Zverev | French Open, Paris, France | Score: 0-3 | Status: Ended | Date: 2026-05-25\n[LIVE] Federico Cin\u00e0 vs Reilly Opelka | French Open, Paris, France | Score: 3-2 | Status: Ended | Date: 2026-05-25\n[LIVE] Titouan Droguet vs Jakub Men\u0161ik | French Open, Paris, France | Score: 0-3 | Status: Ended | Date: 2026-05-25\n[LIVE] Tomas Martin Etcheverry vs Nuno Borges | French Open, Paris, France | Score: 0-3 | Status: Ended | Date: 2026-05-25\n[LIVE] Michael Zheng vs Dino Pri\u017emi\u0107 | French Open, Paris, France | Score: 0-3 | Status: Ended | Date: 2026-05-25\n[LIVE] Quentin Halys vs Mattia Bellucci | French Open, Paris, France | Score: 3-0 | Status: Ended | Date: 2026-05-25\n[LIVE] Joao Fonseca vs Luka Pavlovic | French Open, Paris, France | Score: 3-0 | Status: Ended | Date: 2026-05-25\n[LIVE] Hamad Medjedovi\u0107 vs Yannick Hanfmann | French Open, Paris, France | Score: 3-1 | Status: Ended | Date: 2026-05-25"
+    ],
+    "ground_truth":"This requires current tennis results from a live sports API.",
+    "faithfulness":null,
+    "answer_relevancy":null,
+    "context_precision":null,
+    "context_recall":null
+  },
+  {
+    "question":"Current Premier League standings",
+    "answer":"As a live reporter on the ground, I can provide you with the final scores from the Premier League fixtures played on 2026-05-25. However, based on the match data provided, I do not have access to the full league table or the cumulative points to give you the current overall Premier League standings.\n\nI can only confirm the results for this specific matchday!",
+    "contexts":[
+      "[LIVE] Brighton & Hove Albion vs Manchester United | Premier League | Score: 0-3 | Status: Ended | Date: 2026-05-25\n[LIVE] Burnley vs Wolverhampton | Premier League | Score: 1-1 | Status: Ended | Date: 2026-05-25\n[LIVE] Crystal Palace vs Arsenal | Premier League | Score: 1-2 | Status: Ended | Date: 2026-05-25\n[LIVE] Fulham vs Newcastle United | Premier League | Score: 2-0 | Status: Ended | Date: 2026-05-25\n[LIVE] Liverpool FC vs Brentford | Premier League | Score: 1-1 | Status: Ended | Date: 2026-05-25\n[LIVE] Manchester City vs Aston Villa | Premier League | Score: 1-2 | Status: Ended | Date: 2026-05-25\n[LIVE] Nottingham Forest vs Bournemouth | Premier League | Score: 1-1 | Status: Ended | Date: 2026-05-25\n[LIVE] Sunderland vs Chelsea | Premier League | Score: 2-1 | Status: Ended | Date: 2026-05-25\n[LIVE] Tottenham Hotspur vs Everton | Premier League | Score: 1-0 | Status: Ended | Date: 2026-05-25\n[LIVE] West Ham United vs Leeds United | Premier League | Score: 3-0 | Status: Ended | Date: 2026-05-25"
+    ],
+    "ground_truth":"This requires the latest Premier League standings from a live sports API.",
+    "faithfulness":null,
+    "answer_relevancy":null,
+    "context_precision":null,
+    "context_recall":null
+  },
+  {
+    "question":"Live IPL match score now",
+    "answer":"Reporting live for May 25, 2026, from the Indian Premier League! We have two completed fixtures today:\n\nThe Rajasthan Royals defeated the Mumbai Indians with a score of 205 to 175, and the Delhi Capitals beat the Kolkata Knight Riders 203 to 163.",
+    "contexts":[
+      "[LIVE] Mumbai Indians vs Rajasthan Royals | Indian Premier League | Score: 175-205 | Status: Ended | Date: 2026-05-25\n[LIVE] Kolkata Knight Riders vs Delhi Capitals | Indian Premier League | Score: 163-203 | Status: Ended | Date: 2026-05-25\n[LIVE] Boost Region vs Speen Ghar Region | e& Regional List A Tournament | Score: 235-236 | Status: Ended | Date: 2026-05-25\n[LIVE] Band-e-Amir Region vs Amo Region | e& Regional List A Tournament | Score: TBD | Status: Not started | Date: 2026-05-25\n[LIVE] Dragons Women vs Typhoons Women | Evoke Super 20 Trophy | Score: 120-119 | Status: Ended | Date: 2026-05-25\n[LIVE] Typhoons Women vs Dragons Women | Evoke Super 20 Trophy | Score: TBD | Status: Not started | Date: 2026-05-25\n[LIVE] Badureliya Sports Club vs Tamil Union Cricket and Athletic Club | Major Clubs T20 Tournament, Group A | Score: TBD | Status: Not started | Date: 2026-05-25\n[LIVE] Kurunegala Youth Cricket Club vs Nugegoda Sports Welfare Club | Major Clubs T20 Tournament, Group A | Score: TBD | Status: Not started | Date: 2026-05-25\n[LIVE] Colombo Cricket Club vs Moors Sports Club | Major Clubs T20 Tournament, Group A | Score: TBD | Status: Not started | Date: 2026-05-25\n[LIVE] Nondescripts Cricket Club vs Panadura Sports Club | Major Clubs T20 Tournament, Group B | Score: TBD | Status: Not started | Date: 2026-05-25"
+    ],
+    "ground_truth":"This requires the current live IPL score from a live sports API.",
+    "faithfulness":null,
+    "answer_relevancy":null,
+    "context_precision":null,
+    "context_recall":null
+  },
+  {
+    "question":"Who won the 2019 IPL final?",
+    "answer":"The provided context does not contain information regarding the 2019 IPL final. It only lists specific match results between various teams. Therefore, the context is insufficient to answer who won the tournament.",
+    "contexts":[
+      "IPL 2019: Royal Challengers Bangalore beat Kings XI Punjab by 8 wickets at IS Bindra Stadium, Mohali. Toss won by Royal Challengers Bangalore who chose to field. Player of the match: AB de Villiers.",
+      "IPL 2019: Mumbai Indians beat Kings XI Punjab by 3 wickets at Wankhede Stadium, Mumbai. Toss won by Mumbai Indians who chose to field. Player of the match: KA Pollard.",
+      "IPL 2019: Mumbai Indians beat Kolkata Knight Riders by 9 wickets at Wankhede Stadium, Mumbai. Toss won by Mumbai Indians who chose to field. Player of the match: HH Pandya.",
+      "IPL 2019: Mumbai Indians beat Sunrisers Hyderabad by 0 wickets at Wankhede Stadium, Mumbai. Toss won by Mumbai Indians who chose to bat. Player of the match: JJ Bumrah.",
+      "IPL 2019: Kolkata Knight Riders beat Royal Challengers Bangalore by 5 wickets at M. Chinnaswamy Stadium, Bengaluru. Toss won by Kolkata Knight Riders who chose to field. Player of the match: AD Russell."
+    ],
+    "ground_truth":"Mumbai Indians won the 2019 IPL final by defeating Chennai Super Kings.",
+    "faithfulness":null,
+    "answer_relevancy":null,
+    "context_precision":null,
+    "context_recall":null
+  },
+  {
+    "question":"Arsenal vs Chelsea results 2021",
+    "answer":"In the 2021 Premier League (England) season, Arsenal and Chelsea played twice. Arsenal won one match 4.0-2.0 playing away. Conversely, Chelsea won one match 2.0-0.0 playing away (which was a home loss for Arsenal).",
+    "contexts":[
+      "ARSENAL won against CHELSEA with a scoreline of 4.0-2.0 in the Premier League (England) during the 2021 season, played away.",
+      "CHELSEA won against ARSENAL with a scoreline of 2.0-0.0 in the Premier League (England) during the 2021 season, played away.",
+      "ARSENAL lost against CHELSEA with a scoreline of 0.0-2.0 in the Premier League (England) during the 2021 season, played home.",
+      "CHELSEA lost against ARSENAL with a scoreline of 2.0-4.0 in the Premier League (England) during the 2021 season, played home.",
+      "ARSENAL won against CHELSEA with a scoreline of 3.0-1.0 in the Premier League (England) during the 2020 season, played home."
+    ],
+    "ground_truth":"Arsenal and Chelsea played Premier League matches in 2021 with recorded match results.",
+    "faithfulness":null,
+    "answer_relevancy":null,
+    "context_precision":null,
+    "context_recall":null
+  },
+  {
+    "question":"Djokovic Wimbledon match results",
+    "answer":"In the Tennis competition at Wimbledon, DjokovicN. defeated the following players:\n- NieminenJ. in the 2nd Round.\n- SimonG. and TomicB. and ChardyJ. in the 3rd Round.\n- KlizanM. in the 1st Round.",
+    "contexts":[
+      "DjokovicN. (ranked #1.0) defeated NieminenJ. (ranked #92.0) in the 2ndRound of the Wimbledon tournament (GrandSlam, Grass court, Outdoor).",
+      "DjokovicN. (ranked #2.0) defeated SimonG. (ranked #44.0) in the 3rdRound of the Wimbledon tournament (GrandSlam, Grass court, Outdoor).",
+      "DjokovicN. (ranked #4.0) defeated KlizanM. (ranked #47.0) in the 1stRound of the Wimbledon tournament (GrandSlam, Grass court, Outdoor).",
+      "DjokovicN. (ranked #1.0) defeated TomicB. (ranked #26.0) in the 3rdRound of the Wimbledon tournament (GrandSlam, Grass court, Outdoor).",
+      "DjokovicN. (ranked #1.0) defeated ChardyJ. (ranked #25.0) in the 3rdRound of the Wimbledon tournament (GrandSlam, Grass court, Outdoor)."
+    ],
+    "ground_truth":"Novak Djokovic has multiple Wimbledon match results including championship wins.",
+    "faithfulness":null,
+    "answer_relevancy":null,
+    "context_precision":null,
+    "context_recall":null
+  },
+  {
+    "question":"LeBron James points rebounds stats",
+    "answer":"Based on NBA game data, LeBron James' points and rebounds stats are as follows: 42pts\/17reb (vs GSW, Feb 06, 2025), 40pts\/8reb (vs POR, Feb 20, 2025), 38pts\/10reb (vs MIN, Apr 25, 2025), and 39pts\/7reb (vs MEM, Nov 06, 2024).",
+    "contexts":[
+      "NBA game: LAL @ MIN on APR 25, 2025 \u2014 team lost. Team stats: 104 points, 38 rebounds, 21 assists, 5 steals, 7 blocks. Shooting: 47.4% FG, 42.5% from three. Top performers: LeBron James (38pts\/10reb\/4ast), Jaden McDaniels (30pts\/5reb\/1ast), Anthony Edwards (29pts\/8reb\/8ast).",
+      "NBA game: LAL @ MIN on APR 25, 2025 \u2014 team lost. Team stats: 104 points, 38 rebounds, 21 assists, 5 steals, 7 blocks. Shooting: 47.4% FG, 42.5% from three. Top performers: LeBron James (38pts\/10reb\/4ast), Jaden McDaniels (30pts\/5reb\/1ast), Anthony Edwards (29pts\/8reb\/8ast).",
+      "NBA game: LAL @ POR on FEB 20, 2025 \u2014 team won. Team stats: 110 points, 48 rebounds, 20 assists, 7 steals, 6 blocks. Shooting: 47.6% FG, 28.1% from three. Top performers: LeBron James (40pts\/8reb\/4ast), Austin Reaves (32pts\/1reb\/7ast), Deni Avdija (28pts\/4reb\/5ast).",
+      "NBA game: LAL @ MEM on NOV 06, 2024 \u2014 team lost. Team stats: 114 points, 37 rebounds, 23 assists, 10 steals, 1 blocks. Shooting: 44.1% FG, 31.3% from three. Top performers: LeBron James (39pts\/7reb\/6ast), Jaylen Wells (20pts\/3reb\/1ast), Ja Morant (20pts\/4reb\/5ast).",
+      "NBA game: GSW @ LAL on FEB 06, 2025 \u2014 team lost. Team stats: 112 points, 40 rebounds, 29 assists, 8 steals, 2 blocks. Shooting: 40.6% FG, 30.2% from three. Top performers: LeBron James (42pts\/17reb\/8ast), Stephen Curry (37pts\/7reb\/4ast), Austin Reaves (23pts\/3reb\/4ast)."
+    ],
+    "ground_truth":"LeBron James has NBA statistics including points, rebounds, and assists.",
+    "faithfulness":null,
+    "answer_relevancy":null,
+    "context_precision":null,
+    "context_recall":null
+  },
+  {
+    "question":"Premier League top scorer 2020",
+    "answer":"The provided context does not contain information regarding the top scorer for the 2020 Premier League season. It only lists specific match results for football competitions. Therefore, the context is insufficient to answer this question.",
+    "contexts":[
+      "LEICESTER won against TOTTENHAM with a scoreline of 2.0-0.0 in the Premier League (England) during the 2020 season, played away.",
+      "LEICESTER drew against WOLVERHAMPTON with a scoreline of 0.0-0.0 in the Premier League (England) during the 2020 season, played away.",
+      "BRIGHTON lost against LEICESTER with a scoreline of 0.0-3.0 in the Premier League (England) during the 2020 season, played away.",
+      "FULHAM drew against NEWCASTLE with a scoreline of 1.0-1.0 in the Premier League (England) during the 2020 season, played away.",
+      "CHELSEA lost against ARSENAL with a scoreline of 1.0-3.0 in the Premier League (England) during the 2020 season, played away."
+    ],
+    "ground_truth":"The Premier League top scorer in 2020 was Harry Kane or Mohamed Salah depending on season context.",
+    "faithfulness":null,
+    "answer_relevancy":null,
+    "context_precision":null,
+    "context_recall":null
+  },
+  {
+    "question":"Nadal clay court record wins",
+    "answer":"Based on the provided tennis records, Nadal won 5 matches on outdoor clay courts. These victories include matches against Kohlschreiber P., Thiem D., Delbonis F., Simon G., and Wawrinka S.",
+    "contexts":[
+      "NadalR. (ranked #5.0) defeated KohlschreiberP. (ranked #26.0) in the 2ndRound of the InternazionaliBNLdItalia tournament (Masters1000, Clay court, Outdoor).",
+      "NadalR. (ranked #5.0) defeated ThiemD. (ranked #9.0) in the TheFinal of the MutuaMadridOpen tournament (Masters1000, Clay court, Outdoor).",
+      "NadalR. (ranked #5.0) defeated DelbonisF. (ranked #128.0) in the 2ndRound of the VTROpen tournament (ATP250, Clay court, Outdoor).",
+      "NadalR. (ranked #1.0) defeated SimonG. (ranked #30.0) in the 2ndRound of the InternazionaliBNLdItalia tournament (Masters1000, Clay court, Outdoor).",
+      "NadalR. (ranked #5.0) defeated WawrinkaS. (ranked #15.0) in the TheFinal of the MutuaMadridOpen tournament (Masters1000, Clay court, Outdoor)."
+    ],
+    "ground_truth":"Rafael Nadal has one of the best clay court win records in tennis history.",
+    "faithfulness":null,
+    "answer_relevancy":null,
+    "context_precision":null,
+    "context_recall":null
+  },
+  {
+    "question":"IPL 2018 season results",
+    "answer":"Based on the provided records for the IPL 2018 cricket competition:\n\n- Sunrisers Hyderabad defeated Mumbai Indians twice (by 31 runs and 1 wicket) and beat Rajasthan Royals by 9 wickets.\n- Mumbai Indians beat Chennai Super Kings by 8 wickets.\n- Rajasthan Royals beat Mumbai Indians by 7 wickets.",
+    "contexts":[
+      "IPL 2018: Sunrisers Hyderabad beat Mumbai Indians by 31 runs at Wankhede Stadium, Mumbai. Toss won by Mumbai Indians who chose to field. Player of the match: Rashid Khan.",
+      "IPL 2018: Mumbai Indians beat Chennai Super Kings by 8 wickets at Maharashtra Cricket Association Stadium, Pune. Toss won by Mumbai Indians who chose to field. Player of the match: RG Sharma.",
+      "IPL 2018: Sunrisers Hyderabad beat Rajasthan Royals by 9 wickets at Rajiv Gandhi International Stadium, Uppal, Hyderabad. Toss won by Sunrisers Hyderabad who chose to field. Player of the match: S Dhawan.",
+      "IPL 2018: Rajasthan Royals beat Mumbai Indians by 7 wickets at Wankhede Stadium, Mumbai. Toss won by Rajasthan Royals who chose to field. Player of the match: JC Buttler.",
+      "IPL 2018: Sunrisers Hyderabad beat Mumbai Indians by 1 wickets at Rajiv Gandhi International Stadium, Uppal, Hyderabad. Toss won by Sunrisers Hyderabad who chose to field. Player of the match: Rashid Khan."
+    ],
+    "ground_truth":"The 2018 IPL season concluded with Chennai Super Kings winning the championship.",
+    "faithfulness":null,
+    "answer_relevancy":null,
+    "context_precision":null,
+    "context_recall":null
+  },
+  {
+    "question":"Real Madrid Champions League 2017",
+    "answer":"In the 2017 Uefa Champions League (Football), Real Madrid secured home victories against Paris Saint Germain (3.0-1.0), Borussia Dortmund (3.0-2.0), and APOEL (3.0-0.0). They also won an away match against Paris Saint Germain with a score of 2.0-1.0. Additionally, they played to a 1.0-1.0 draw at home against Tottenham.",
+    "contexts":[
+      "REAL MADRID won against PARIS SAINT GERMAIN with a scoreline of 3.0-1.0 in the Uefa Champions League (Europe Uefa) during the 2017 season, played home.",
+      "REAL MADRID won against BORUSSIA DORTMUND with a scoreline of 3.0-2.0 in the Uefa Champions League (Europe Uefa) during the 2017 season, played home.",
+      "REAL MADRID won against APOEL with a scoreline of 3.0-0.0 in the Uefa Champions League (Europe Uefa) during the 2017 season, played home.",
+      "REAL MADRID won against PARIS SAINT GERMAIN with a scoreline of 2.0-1.0 in the Uefa Champions League (Europe Uefa) during the 2017 season, played away.",
+      "REAL MADRID drew against TOTTENHAM with a scoreline of 1.0-1.0 in the Uefa Champions League (Europe Uefa) during the 2017 season, played home."
+    ],
+    "ground_truth":"Real Madrid won the UEFA Champions League in 2017.",
+    "faithfulness":null,
+    "answer_relevancy":null,
+    "context_precision":null,
+    "context_recall":null
+  },
+  {
+    "question":"NBA championship winners history",
+    "answer":"Based on the provided basketball information from the NBA, the Boston Celtics are the most successful team in history with a record 18 championships. The Los Angeles Lakers are one of the most successful teams with 17 championships, ranking second to the Celtics. Additionally, player Kobe Bryant won five NBA championships during his career with the Lakers.",
+    "contexts":[
+      "arded as the most successful team in NBA history. They hold the records for most NBA championships won, with 18, and most recorded wins of any NBA franchise.",
+      "arded as the most successful team in NBA history. They hold the records for most NBA championships won, with 18, and most recorded wins of any NBA franchise.",
+      "ngeles Kings of the National Hockey League (NHL). The Lakers are one of the most successful teams in the history of the NBA with 17 championships, second to the Boston Celtics.",
+      "ngeles Kings of the National Hockey League (NHL). The Lakers are one of the most successful teams in the history of the NBA with 17 championships, second to the Boston Celtics.",
+      "Kobe Bryant: Kobe Bean Bryant was an American professional basketball player. A shooting guard, he spent his entire 20-year career with the Los Angeles Lakers in the National Basketball Association (NBA). Bryant won five NBA championships and was an 18-time All-Star, four-time All-Star MVP, 15-time member of the All-NBA Team, 12-time member of the All-Defensive Team, the 2008 NBA Most Valuable Player (MVP), two-time NBA Finals MVP, and two-time scoring champion."
+    ],
+    "ground_truth":"NBA championship history includes teams such as the Boston Celtics, Lakers, Bulls, Warriors, and others.",
+    "faithfulness":null,
+    "answer_relevancy":null,
+    "context_precision":null,
+    "context_recall":null
+  },
+  {
+    "question":"FIFA World Cup 2018 results",
+    "answer":"From the football competition FIFA World Cup 2018, hosted by Russia, France won the tournament by defeating Croatia in the final. Belgium took third place. A total of 32 teams played 64 matches, scoring 169 goals, which averaged 2.6 per game.",
+    "contexts":[
+      "FIFA World Cup 2018 was hosted by Russia. France won the tournament, defeating Croatia in the final. Third place went to Belgium. 32 teams played 64 matches, scoring 169 goals (average 2.6 per game).",
+      "FIFA World Cup 2022 was hosted by Qatar. Argentina won the tournament, defeating France in the final. Third place went to Croatia. 32 teams played 64 matches, scoring 172 goals (average 2.7 per game).",
+      "FIFA World Cup 2014 was hosted by Brazil. Germany won the tournament, defeating Argentina in the final. Third place went to Netherlands. 32 teams played 64 matches, scoring 171 goals (average 2.7 per game).",
+      "FIFA World Cup 1938 was hosted by France. Italy won the tournament, defeating Hungary in the final. Third place went to Brazil. 15 teams played 18 matches, scoring 84 goals (average 4.7 per game).",
+      "FIFA World Cup 1998 was hosted by France. France won the tournament, defeating Brazil in the final. Third place went to Croatia. 32 teams played 64 matches, scoring 171 goals (average 2.7 per game)."
+    ],
+    "ground_truth":"France won the 2018 FIFA World Cup.",
+    "faithfulness":null,
+    "answer_relevancy":null,
+    "context_precision":null,
+    "context_recall":null
+  },
+  {
+    "question":"Stephen Curry three point record",
+    "answer":"The provided context for these NBA games does not include Stephen Curry's specific three-point records or individual three-pointers made. It only lists his total points, rebounds, and assists for games on December 21, 2024, April 01, 2025, and April 08, 2025. Therefore, the context is insufficient to answer this question.",
+    "contexts":[
+      "NBA game: GSW @ PHX on APR 08, 2025 \u2014 team won. Team stats: 133 points, 57 rebounds, 31 assists, 14 steals, 3 blocks. Shooting: 48.4% FG, 37.5% from three. Top performers: Stephen Curry (25pts\/9reb\/6ast), Brandin Podziemski (22pts\/5reb\/3ast), Devin Booker (21pts\/3reb\/4ast).",
+      "NBA game: GSW @ PHX on APR 08, 2025 \u2014 team won. Team stats: 133 points, 57 rebounds, 31 assists, 14 steals, 3 blocks. Shooting: 48.4% FG, 37.5% from three. Top performers: Stephen Curry (25pts\/9reb\/6ast), Brandin Podziemski (22pts\/5reb\/3ast), Devin Booker (21pts\/3reb\/4ast).",
+      "NBA game: GSW @ MEM on APR 01, 2025 \u2014 team won. Team stats: 134 points, 49 rebounds, 29 assists, 11 steals, 3 blocks. Shooting: 42.4% FG, 39.3% from three. Top performers: Stephen Curry (52pts\/10reb\/8ast), Ja Morant (36pts\/3reb\/6ast), Jimmy Butler III (27pts\/6reb\/4ast).",
+      "NBA game: GSW @ MEM on APR 01, 2025 \u2014 team won. Team stats: 134 points, 49 rebounds, 29 assists, 11 steals, 3 blocks. Shooting: 42.4% FG, 39.3% from three. Top performers: Stephen Curry (52pts\/10reb\/8ast), Ja Morant (36pts\/3reb\/6ast), Jimmy Butler III (27pts\/6reb\/4ast).",
+      "NBA game: GSW @ MIN on DEC 21, 2024 \u2014 team won. Team stats: 113 points, 45 rebounds, 30 assists, 9 steals, 6 blocks. Shooting: 46.0% FG, 38.1% from three. Top performers: Stephen Curry (31pts\/3reb\/10ast), Donte DiVincenzo (19pts\/4reb\/4ast), Anthony Edwards (19pts\/7reb\/5ast)."
+    ],
+    "ground_truth":"Stephen Curry holds major NBA three-point shooting records.",
+    "faithfulness":null,
+    "answer_relevancy":null,
+    "context_precision":null,
+    "context_recall":null
+  },
+  {
+    "question":"Sachin Tendulkar test centuries",
+    "answer":"In the sport of cricket, Sachin Tendulkar scored 51 test centuries. This data is from his record of 200 test matches played between 1989 and 2013.",
+    "contexts":[
+      "Sachin Tendulkar: Sachin Ramesh Tendulkar is an Indian former international cricketer who captained the Indian national team. Often dubbed the \"God of Cricket\" in India, he is widely regarded as one of the greatest cricketers of all time. He holds several world records, including being the all-time highest run-scorer in international cricket, receiving the most player of the match awards in international cricket, and being the only batsman to score 100 international centuries.",
+      "Sachin Tendulkar: Sachin Ramesh Tendulkar is an Indian former international cricketer who captained the Indian national team. Often dubbed the \"God of Cricket\" in India, he is widely regarded as one of the greatest cricketers of all time. He holds several world records, including being the all-time highest run-scorer in international cricket, receiving the most player of the match awards in international cricket, and being the only batsman to score 100 international centuries.",
+      "Test cricket: SR Tendulkar (INDIA) played 200 test matches (329 innings) from 1989-2013, accumulating 15921 runs with an average of 53.78. Test centuries: 51, half-centuries: 68.",
+      "nly batsman to score 100 international centuries. Tendulkar was a Member of Parliament, Rajya Sabha by presidential nomination from 2012 to 2018.",
+      "nly batsman to score 100 international centuries. Tendulkar was a Member of Parliament, Rajya Sabha by presidential nomination from 2012 to 2018."
+    ],
+    "ground_truth":"Sachin Tendulkar scored 51 Test centuries.",
+    "faithfulness":null,
+    "answer_relevancy":null,
+    "context_precision":null,
+    "context_recall":null
+  },
+  {
+    "question":"Manchester City Premier League titles",
+    "answer":"The provided context does not contain information regarding the number of Premier League titles won by Manchester City. It only lists specific match results against Stoke City and Tottenham. Therefore, the context is insufficient to answer this question.",
+    "contexts":[
+      "MANCHESTER CITY won against STOKE CITY with a scoreline of 7.0-2.0 in the Premier League (England) during the 2017 season, played home.",
+      "MANCHESTER CITY won against STOKE CITY with a scoreline of 3.0-0.0 in the Premier League (England) during the 2012 season, played home.",
+      "MANCHESTER CITY won against STOKE CITY with a scoreline of 3.0-0.0 in the Premier League (England) during the 2008 season, played home.",
+      "MANCHESTER CITY won against STOKE CITY with a scoreline of 2.0-0.0 in the Premier League (England) during the 2017 season, played away.",
+      "MANCHESTER CITY won against TOTTENHAM with a scoreline of 3.0-1.0 in the Premier League (England) during the 2017 season, played away."
+    ],
+    "ground_truth":"Manchester City have won multiple Premier League titles.",
+    "faithfulness":null,
+    "answer_relevancy":null,
+    "context_precision":null,
+    "context_recall":null
+  },
+  {
+    "question":"Roger Federer Grand Slam titles career",
+    "answer":"Based on the provided tennis data from the Wimbledon tournament, Roger Federer won the title by defeating CilicM. in the final. The context does not provide his full career record of Grand Slam titles.",
+    "contexts":[
+      "FedererR. (ranked #3.0) defeated DjokovicN. (ranked #1.0) in the Semifinals of the Wimbledon tournament (GrandSlam, Grass court, Outdoor).",
+      "FedererR. (ranked #5.0) defeated CilicM. (ranked #6.0) in the TheFinal of the Wimbledon tournament (GrandSlam, Grass court, Outdoor).",
+      "FedererR. (ranked #5.0) defeated LajovicD. (ranked #79.0) in the 2ndRound of the Wimbledon tournament (GrandSlam, Grass court, Outdoor).",
+      "FedererR. (ranked #4.0) defeated MullerG. (ranked #103.0) in the 2ndRound of the Wimbledon tournament (GrandSlam, Grass court, Outdoor).",
+      "FedererR. (ranked #5.0) defeated DimitrovG. (ranked #11.0) in the 4thRound of the Wimbledon tournament (GrandSlam, Grass court, Outdoor)."
+    ],
+    "ground_truth":"Roger Federer won 20 Grand Slam singles titles.",
+    "faithfulness":null,
+    "answer_relevancy":null,
+    "context_precision":null,
+    "context_recall":null
+  },
+  {
+    "question":"Who is Kylian Mbappe?",
+    "answer":"Kylian Mbapp\u00e9 Lottin is a French professional footballer who plays as a forward for the La Liga club Real Madrid and serves as the captain of the France national team. He is widely regarded as one of the best players in the world, noted for his clinical finishing, dribbling, and pace.",
+    "contexts":[
+      "Kylian Mbapp\u00e9: Kylian Mbapp\u00e9 Lottin is a French professional footballer who plays as a forward for La Liga club Real Madrid and captains the France national team. He is known for his pace, dribbling, and clinical finishing, and is widely regarded as one of the best players in the world.",
+      "Kylian Mbapp\u00e9: Kylian Mbapp\u00e9 Lottin is a French professional footballer who plays as a forward for La Liga club Real Madrid and captains the France national team. He is known for his pace, dribbling, and clinical finishing, and is widely regarded as one of the best players in the world.",
+      "top goal scorers in international football (89). He has scored over 700 senior career goals for club and country.",
+      "top goal scorers in international football (89). He has scored over 700 senior career goals for club and country.",
+      "the Year Awards, and four European Golden Shoes. He was also named the world's best player five times by FIFA. He has won 34 trophies in his career, including five UEFA Champions Leagues and the UEFA European Championship. He holds the records for most goals (140) and assists (42) in the Champions League, goals (14) and assists (8) in the European Championship, and most international appearances (226) and international goals (143). He is the only player to have scored 100 goals with four different clubs."
+    ],
+    "ground_truth":"Kylian Mbappe is a French professional footballer.",
+    "faithfulness":null,
+    "answer_relevancy":null,
+    "context_precision":null,
+    "context_recall":null
+  },
+  {
+    "question":"Golden State Warriors NBA 2016 season",
+    "answer":"The provided context does not contain information regarding the Golden State Warriors' 2016 NBA season. It only includes general team history and specific game data from January and April 2025. Therefore, the context is insufficient to answer this question.",
+    "contexts":[
+      "Golden State Warriors: The Golden State Warriors are an American professional basketball team based in San Francisco. The Warriors compete in the National Basketball Association (NBA) as a member of the Pacific Division of the Western Conference. Founded in 1946 in Philadelphia, the Warriors moved to the San Francisco Bay Area in 1962 and took the city's name before changing its geographic moniker to Golden State in 1971. The team plays its home games at Chase Center.",
+      "Golden State Warriors: The Golden State Warriors are an American professional basketball team based in San Francisco. The Warriors compete in the National Basketball Association (NBA) as a member of the Pacific Division of the Western Conference. Founded in 1946 in Philadelphia, the Warriors moved to the San Francisco Bay Area in 1962 and took the city's name before changing its geographic moniker to Golden State in 1971. The team plays its home games at Chase Center.",
+      "NBA game: GSW vs. WAS on JAN 18, 2025 \u2014 team won. Team stats: 122 points, 55 rebounds, 24 assists, 6 steals, 7 blocks. Shooting: 46.9% FG, 34.1% from three. Top performers: Jordan Poole (38pts\/5reb\/5ast), Andrew Wiggins (31pts\/11reb\/4ast), Stephen Curry (26pts\/5reb\/6ast).",
+      "NBA game: GSW vs. WAS on JAN 18, 2025 \u2014 team won. Team stats: 122 points, 55 rebounds, 24 assists, 6 steals, 7 blocks. Shooting: 46.9% FG, 34.1% from three. Top performers: Jordan Poole (38pts\/5reb\/5ast), Andrew Wiggins (31pts\/11reb\/4ast), Stephen Curry (26pts\/5reb\/6ast).",
+      "NBA game: HOU vs. GSW on APR 20, 2025 \u2014 team lost. Team stats: 85 points, 52 rebounds, 19 assists, 9 steals, 3 blocks. Shooting: 39.1% FG, 20.7% from three. Top performers: Stephen Curry (31pts\/6reb\/3ast), Alperen Sengun (26pts\/9reb\/1ast), Jimmy Butler III (25pts\/7reb\/6ast)."
+    ],
+    "ground_truth":"The Golden State Warriors had a historic 2016 NBA season with a 73-win regular season.",
+    "faithfulness":null,
+    "answer_relevancy":null,
+    "context_precision":null,
+    "context_recall":null
+  }
+]

@@ -1,35 +1,42 @@
 [
-  {"id": 1,  "question": "Who is Steve Smith?",                          "expected_intent": "bio",     "sport": "cricket",    "expected_source": "wikipedia"},
-  {"id": 2,  "question": "Who is Cristiano Ronaldo?",                    "expected_intent": "bio",     "sport": "football",   "expected_source": "wikipedia"},
-  {"id": 3,  "question": "Tell me about Virat Kohli",                    "expected_intent": "bio",     "sport": "cricket",    "expected_source": "wikipedia"},
-  {"id": 4,  "question": "Who is LeBron James?",                         "expected_intent": "bio",     "sport": "basketball", "expected_source": "wikipedia"},
-  {"id": 5,  "question": "Tell me about Novak Djokovic",                 "expected_intent": "bio",     "sport": "tennis",     "expected_source": "wikipedia"},
-  {"id": 6,  "question": "Who is Rafael Nadal?",                         "expected_intent": "bio",     "sport": "tennis",     "expected_source": "wikipedia"},
-  {"id": 7,  "question": "What is the Premier League?",                  "expected_intent": "bio",     "sport": "football",   "expected_source": "wikipedia"},
-  {"id": 8,  "question": "Who is MS Dhoni?",                             "expected_intent": "bio",     "sport": "cricket",    "expected_source": "wikipedia"},
-
-  {"id": 9,  "question": "Live football scores today",                   "expected_intent": "live",    "sport": "football",   "expected_source": "sofascore_api"},
-  {"id": 10, "question": "What is the current cricket score?",           "expected_intent": "live",    "sport": "cricket",    "expected_source": "sofascore_api"},
-  {"id": 11, "question": "Today's NBA games",                            "expected_intent": "live",    "sport": "basketball", "expected_source": "sofascore_api"},
-  {"id": 12, "question": "Latest tennis results",                        "expected_intent": "live",    "sport": "tennis",     "expected_source": "sofascore_api"},
-  {"id": 13, "question": "Current Premier League standings",             "expected_intent": "live",    "sport": "football",   "expected_source": "sofascore_api"},
-  {"id": 14, "question": "Live IPL match score now",                     "expected_intent": "live",    "sport": "cricket",    "expected_source": "sofascore_api"},
-
-  {"id": 15, "question": "Who won the 2019 IPL final?",                  "expected_intent": "history", "sport": "cricket",    "expected_source": "faiss"},
-  {"id": 16, "question": "Arsenal vs Chelsea results 2021",              "expected_intent": "history", "sport": "football",   "expected_source": "faiss"},
-  {"id": 17, "question": "Djokovic Wimbledon match results",             "expected_intent": "history", "sport": "tennis",     "expected_source": "faiss"},
-  {"id": 18, "question": "LeBron James points rebounds stats",           "expected_intent": "history", "sport": "basketball", "expected_source": "faiss"},
-  {"id": 19, "question": "Premier League top scorer 2020",               "expected_intent": "history", "sport": "football",   "expected_source": "faiss"},
-  {"id": 20, "question": "Nadal clay court record wins",                 "expected_intent": "history", "sport": "tennis",     "expected_source": "faiss"},
-  {"id": 21, "question": "IPL 2018 season results",                      "expected_intent": "history", "sport": "cricket",    "expected_source": "faiss"},
-  {"id": 22, "question": "Real Madrid Champions League 2017",            "expected_intent": "history", "sport": "football",   "expected_source": "faiss"},
-  {"id": 23, "question": "NBA championship winners history",              "expected_intent": "history", "sport": "basketball", "expected_source": "faiss"},
-  {"id": 24, "question": "FIFA World Cup 2018 results",                  "expected_intent": "history", "sport": "football",   "expected_source": "faiss"},
-
-  {"id": 25, "question": "Stephen Curry three point record",             "expected_intent": "history", "sport": "basketball", "expected_source": "faiss"},
-  {"id": 26, "question": "Sachin Tendulkar test centuries",              "expected_intent": "history", "sport": "cricket",    "expected_source": "faiss"},
-  {"id": 27, "question": "Manchester City Premier League titles",        "expected_intent": "history", "sport": "football",   "expected_source": "faiss"},
-  {"id": 28, "question": "Roger Federer Grand Slam titles career",       "expected_intent": "history", "sport": "tennis",     "expected_source": "faiss"},
-  {"id": 29, "question": "Who is Kylian Mbappe?",                        "expected_intent": "bio",     "sport": "football",   "expected_source": "wikipedia"},
-  {"id": 30, "question": "Golden State Warriors NBA 2016 season",        "expected_intent": "history", "sport": "basketball", "expected_source": "faiss"}
+  {
+    "question": "Who is Steve Smith?",
+    "ground_truth": "Steve Smith is an Australian international cricketer, regarded as one of the best batsmen of his generation, known for representing Australia in Test and limited-overs cricket."
+  },
+  {
+    "question": "Who is Cristiano Ronaldo?",
+    "ground_truth": "Cristiano Ronaldo is a Portuguese professional footballer widely regarded as one of the greatest football players of all time, known for playing for clubs such as Manchester United, Real Madrid, Juventus, and Portugal."
+  },
+  {
+    "question": "Who is MS Dhoni?",
+    "ground_truth": "MS Dhoni is an Indian cricketer and former captain of the Indian national team, known for leading India to victory in the 2007 ICC T20 World Cup, 2011 Cricket World Cup, and 2013 Champions Trophy."
+  },
+  {
+    "question": "Live football scores today",
+    "ground_truth": "This query requires live football match scores for the current day from a live sports data source."
+  },
+  {
+    "question": "Current Premier League standings",
+    "ground_truth": "This query requires the current English Premier League standings from a live sports data source."
+  },
+  {
+    "question": "Who won the 2019 IPL final?",
+    "ground_truth": "Mumbai Indians won the 2019 Indian Premier League final by defeating Chennai Super Kings by 1 run."
+  },
+  {
+    "question": "Arsenal vs Chelsea results 2021",
+    "ground_truth": "Arsenal and Chelsea played Premier League matches in 2021, including Arsenal defeating Chelsea 1-0 in May 2021 and Arsenal winning 3-1 in December 2020 season context."
+  },
+  {
+    "question": "Sachin Tendulkar test centuries",
+    "ground_truth": "Sachin Tendulkar scored 51 centuries in Test cricket, the highest by any player in Test history."
+  },
+  {
+    "question": "Roger Federer Grand Slam titles career",
+    "ground_truth": "Roger Federer won 20 Grand Slam singles titles during his tennis career."
+  },
+  {
+    "question": "Golden State Warriors NBA 2016 season",
+    "ground_truth": "The Golden State Warriors had a record-breaking 2015–16 NBA season with a 73–9 regular season record but lost the NBA Finals to the Cleveland Cavaliers."
+  }
 ]

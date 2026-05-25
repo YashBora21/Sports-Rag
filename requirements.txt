@@ -6,7 +6,7 @@ faiss-cpu==1.8.0
 sentence-transformers==3.0.1
 
 # ── LLM — Gemini ──────────────────────────────────────────────────────────────
-google-generativeai==0.7.2
+google-generativeai==0.4.1
 
 # ── Data processing ───────────────────────────────────────────────────────────
 pandas==2.2.2

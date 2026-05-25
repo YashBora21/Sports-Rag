@@ -1,13 +1,14 @@
 """
 src/rag/rag_chain.py
-──────────────────────────────────────────────────────────────────────────────
-Smart RAG chain with intent routing:
+Smart RAG chain — now with accurate source tracking for eval.
 
-  BIO    → Wikipedia live fetch → LLM
-  LIVE   → SofaScore API       → LLM
-  HISTORY→ FAISS + BM25        → rerank → LLM
-
-  Fallback: if FAISS confidence < threshold → Wikipedia
+source_used values (precise):
+  "wikipedia"           — wiki fetch succeeded, answer from Wikipedia
+  "faiss_bio_fallback"  — bio intent but wiki failed, used FAISS
+  "faiss_wiki_boost"    — history intent, weak FAISS, wiki boosted context
+  "faiss"               — history intent, FAISS only
+  "sofascore_api"       — live intent, RapidAPI data
+  "sofascore_unavailable" — live intent but no API key
 """
 import time
 from loguru import logger
@@ -15,15 +16,10 @@ from loguru import logger
 from src.retrieval.retriever import SportsRetriever, RetrievalResult
 from src.llm.llm_client      import get_llm_client
 from src.rag.query_router    import QueryRouter, QueryIntent
-from src.tools.wiki_tool     import search_wikipedia
+from src.tools.wiki_tool     import search_wikipedia, test_connectivity
 from src.config              import RAPIDAPI_KEY
 
-
-# ── Confidence threshold — below this we try Wikipedia fallback ───────────────
-FAISS_CONFIDENCE_THRESHOLD = -5.0   # rerank score below this = weak retrieval
-
-
-# ── Prompt templates ──────────────────────────────────────────────────────────
+FAISS_CONFIDENCE_THRESHOLD = -5.0
 
 HISTORY_PROMPT = """\
 You are a sports analyst with access to a database of match results, \
@@ -44,7 +40,7 @@ ANSWER:"""
 
 BIO_PROMPT = """\
 You are a sports knowledge assistant.
-Using the biography information below, answer the question clearly and concisely.
+Using the biography below, answer the question clearly.
 Focus on career highlights, achievements, and key facts.
 
 BIOGRAPHY:
@@ -56,19 +52,10 @@ ANSWER:"""
 LIVE_PROMPT = """\
 You are a live sports reporter.
 Using the current match data below, answer the question.
-Always mention the date and competition name.
+Always mention the date and competition.
 
 LIVE DATA:
 {context}
-
-QUESTION: {question}
-ANSWER:"""
-
-NO_DATA_PROMPT = """\
-You are a sports analyst assistant.
-The retrieval system could not find specific data for this question.
-Based on your general sports knowledge, provide a helpful answer but
-clearly state that this is from general knowledge, not the sports database.
 
 QUESTION: {question}
 ANSWER:"""
@@ -78,22 +65,26 @@ class SportsRAGChain:
 
     def __init__(self, sport_filter: str | None = None):
         logger.info(f"Loading RAG chain (LLM: from .env)...")
-        self.retriever    = SportsRetriever(sport_filter=sport_filter)
-        self.llm          = get_llm_client()
-        self.router       = QueryRouter()
-        self._rapidapi_ok = bool(RAPIDAPI_KEY and
-                                 RAPIDAPI_KEY != "your-rapidapi-key-here")
-        logger.success("RAG chain ready.")
+        self.retriever     = SportsRetriever(sport_filter=sport_filter)
+        self.llm           = get_llm_client()
+        self.router        = QueryRouter()
+        self._rapidapi_ok  = bool(RAPIDAPI_KEY and
+                                  RAPIDAPI_KEY != "your-rapidapi-key-here")
+        # Check Wikipedia at startup
+        self._wiki_ok      = test_connectivity()
+        logger.success(
+            f"RAG chain ready. "
+            f"Wikipedia: {'✓' if self._wiki_ok else '✗'} | "
+            f"SofaScore: {'✓' if self._rapidapi_ok else '✗'}"
+        )
 
-    # ── Context builders ──────────────────────────────────────────────────────
-
-    def _faiss_context(self, retrieval: RetrievalResult) -> str:
-        return retrieval.to_context_string()
-
-    def _wiki_context(self, question: str, sport: str | None) -> dict | None:
+    def _wiki_fetch(self, question: str, sport: str | None) -> dict | None:
+        if not self._wiki_ok:
+            logger.warning("Skipping Wikipedia — connectivity check failed at startup")
+            return None
         return search_wikipedia(question, sport)
 
-    def _live_context(self, sport: str | None) -> str:
+    def _live_fetch(self, sport: str | None) -> str:
         if not self._rapidapi_ok:
             return "Live data unavailable (RAPIDAPI_KEY not configured)."
         try:
@@ -104,14 +95,10 @@ class SportsRAGChain:
             logger.warning(f"Live data fetch failed: {e}")
             return "Live data temporarily unavailable."
 
-    def _is_weak_retrieval(self, retrieval: RetrievalResult) -> bool:
-        """True if top rerank score is below threshold = weak FAISS result."""
+    def _is_weak(self, retrieval: RetrievalResult) -> bool:
         if not retrieval.chunks:
             return True
-        top_score = retrieval.chunks[0].rerank_score
-        return top_score < FAISS_CONFIDENCE_THRESHOLD
-
-    # ── Main query method ─────────────────────────────────────────────────────
+        return retrieval.chunks[0].rerank_score < FAISS_CONFIDENCE_THRESHOLD
 
     def query(
         self,
@@ -122,79 +109,86 @@ class SportsRAGChain:
         t_total = time.time()
         timings = {}
 
-        # ── Step 1: Route the query ───────────────────────────────────────────
         intent: QueryIntent = self.router.route(question)
-        sport = sport_filter or intent.sport
+        sport   = sport_filter or intent.sport
+        context = ""
+        sources = []
+        source_used = "faiss"   # default — overridden below
 
-        # ── Step 2: Retrieve based on intent ─────────────────────────────────
-
-        source_used = "faiss"
-        context     = ""
-        sources     = []
-        retrieval   = None
-
-        # BIO intent → try Wikipedia first
+        # ── BIO intent ────────────────────────────────────────────────────────
         if intent.intent == "bio":
-            t0       = time.time()
-            wiki     = self._wiki_context(intent.rewritten, sport)
+            t0   = time.time()
+            wiki = self._wiki_fetch(intent.rewritten, sport)
             timings["wiki_ms"] = round((time.time() - t0) * 1000)
 
             if wiki:
+                # Wikipedia succeeded
                 context     = wiki["text"]
                 source_used = "wikipedia"
                 sources     = [{
                     "text":         wiki["text"],
                     "sport":        sport or "unknown",
                     "source":       "wikipedia",
-                    "metadata":     {"title": wiki["title"], "url": wiki["url"]},
+                    "metadata":     {
+                        "title":    wiki["title"],
+                        "url":      wiki["url"],
+                        "tried":    wiki.get("tried", []),
+                    },
                     "rerank_score": 1.0,
                 }]
                 prompt = BIO_PROMPT.format(context=context, question=question)
+                logger.info(f"BIO: Wikipedia ✓ '{wiki['title']}'")
+
             else:
-                # Wikipedia failed → fallback to FAISS
-                logger.info("Wikipedia returned nothing → falling back to FAISS")
-                retrieval = self.retriever.retrieve(
+                # Wikipedia failed → FAISS fallback
+                logger.warning(
+                    f"BIO: Wikipedia failed for '{question}' "
+                    f"(wiki_ok={self._wiki_ok}) → FAISS fallback"
+                )
+                retrieval   = self.retriever.retrieve(
                     query=intent.rewritten, top_k=top_k, sport_filter=sport
                 )
-                context     = self._faiss_context(retrieval)
+                context     = retrieval.to_context_string()
                 source_used = "faiss_bio_fallback"
                 sources     = [c.to_dict() for c in retrieval.chunks]
                 timings.update(retrieval.latency)
                 prompt = BIO_PROMPT.format(context=context, question=question)
 
-        # LIVE intent → SofaScore API
+        # ── LIVE intent ───────────────────────────────────────────────────────
         elif intent.intent == "live":
-            t0       = time.time()
-            context  = self._live_context(sport)
+            t0      = time.time()
+            context = self._live_fetch(sport)
             timings["live_api_ms"] = round((time.time() - t0) * 1000)
-            source_used = "sofascore_api"
-            sources     = [{"text": context, "sport": sport or "football",
-                             "source": "sofascore_live", "metadata": {},
-                             "rerank_score": 1.0}]
+            source_used = "sofascore_api" if self._rapidapi_ok else "sofascore_unavailable"
+            sources     = [{
+                "text":         context,
+                "sport":        sport or "football",
+                "source":       source_used,
+                "metadata":     {},
+                "rerank_score": 1.0,
+            }]
             prompt = LIVE_PROMPT.format(context=context, question=question)
 
-        # HISTORY intent → FAISS (default)
+        # ── HISTORY intent (default) ──────────────────────────────────────────
         else:
-            t0        = time.time()
             retrieval = self.retriever.retrieve(
                 query=intent.rewritten, top_k=top_k, sport_filter=sport
             )
             timings.update(retrieval.latency)
-            context     = self._faiss_context(retrieval)
+            context     = retrieval.to_context_string()
             source_used = "faiss"
             sources     = [c.to_dict() for c in retrieval.chunks]
 
-            # Weak FAISS → try Wikipedia fallback
-            if self._is_weak_retrieval(retrieval):
-                logger.info(
-                    f"Weak FAISS confidence "
-                    f"(top score={retrieval.chunks[0].rerank_score if retrieval.chunks else 'N/A'}) "
-                    f"→ trying Wikipedia fallback"
-                )
-                wiki = self._wiki_context(question, sport)
+            # Weak FAISS → boost with Wikipedia
+            if self._is_weak(retrieval):
+                top_score = retrieval.chunks[0].rerank_score if retrieval.chunks else "N/A"
+                logger.info(f"HISTORY: weak FAISS (score={top_score}) → Wikipedia boost")
+                t0   = time.time()
+                wiki = self._wiki_fetch(question, sport)
+                timings["wiki_ms"] = round((time.time() - t0) * 1000)
                 if wiki:
                     context     = wiki["text"] + "\n\n" + context
-                    source_used = "faiss+wikipedia"
+                    source_used = "faiss_wiki_boost"
                     sources.insert(0, {
                         "text":         wiki["text"],
                         "sport":        sport or "unknown",
@@ -205,23 +199,22 @@ class SportsRAGChain:
 
             prompt = HISTORY_PROMPT.format(context=context, question=question)
 
-        # ── Step 3: Generate answer ───────────────────────────────────────────
-        t_llm  = time.time()
+        # ── LLM generation ────────────────────────────────────────────────────
+        t_llm = time.time()
         try:
             answer = self.llm.generate(prompt)
         except Exception as e:
-            logger.error(f"LLM generation failed: {e}")
-            answer = "Sorry, I encountered an error generating the answer. Please try again."
-        llm_ms = round((time.time() - t_llm) * 1000)
-
+            logger.error(f"LLM failed: {e}")
+            answer = f"Error generating answer: {str(e)}"
+        llm_ms   = round((time.time() - t_llm) * 1000)
         total_ms = round((time.time() - t_total) * 1000)
+
         timings["llm_ms"]   = llm_ms
         timings["total_ms"] = total_ms
 
         logger.info(
-            f"RAG done {total_ms}ms | "
-            f"intent={intent.intent} sport={sport} "
-            f"source={source_used} llm={llm_ms}ms"
+            f"RAG {total_ms}ms | intent={intent.intent} "
+            f"sport={sport} source={source_used} llm={llm_ms}ms"
         )
 
         return {
@@ -231,6 +224,7 @@ class SportsRAGChain:
             "sources":     sources,
             "intent":      intent.intent,
             "sport":       sport,
-            "source_used": source_used,
+            "source_used": source_used,      # precise tracking
+            "wiki_ok":     self._wiki_ok,    # diagnostic
             "latency_ms":  timings,
         }
