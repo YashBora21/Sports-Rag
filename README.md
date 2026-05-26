@@ -48,38 +48,8 @@ It doesn't guess. If Ronaldo scored a hat-trick in 2018, that fact comes from a 
 ## Architecture
 
 ```
-User Question
-     │
-     ▼
-┌─────────────────┐
-│  Query Router   │  Detects: bio / live / history
-└────────┬────────┘
-         │
-    ┌────┴─────────────────────────┐
-    │              │               │
-    ▼              ▼               ▼
-Wikipedia     SofaScore        FAISS Index
-Live API      Live API         + BM25
-(bios)        (scores)         (history)
-    │              │               │
-    └──────────────┼───────────────┘
-                   │
-                   ▼
-          ┌─────────────────┐
-          │  RRF Merge +    │
-          │  Cross-encoder  │
-          │  Reranker       │
-          └────────┬────────┘
-                   │
-                   ▼
-          ┌─────────────────┐
-          │  Gemma / Gemini │
-          │  LLM            │
-          └────────┬────────┘
-                   │
-                   ▼
-              Grounded Answer
-              + Source Citations
+<img width="1199" height="1312" alt="ChatGPT Image May 26, 2026, 08_49_40 AM" src="https://github.com/user-attachments/assets/24ffd737-9696-4e2e-b51b-92195eb338f0" />
+
 ```
 
 ### RAG Pipeline Steps
