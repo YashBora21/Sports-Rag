@@ -48,8 +48,7 @@ It doesn't guess. If Ronaldo scored a hat-trick in 2018, that fact comes from a 
 ## Architecture
 
 ```
-<img width="1199" height="1312" alt="ChatGPT Image May 26, 2026, 08_49_40 AM" src="https://github.com/user-attachments/assets/24ffd737-9696-4e2e-b51b-92195eb338f0" />
-
+Architechture.png
 ```
 
 ### RAG Pipeline Steps
