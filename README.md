@@ -47,9 +47,7 @@ It doesn't guess. If Ronaldo scored a hat-trick in 2018, that fact comes from a 
 
 ## Architecture
 
-<p align="center">
-  <img src="./Architecture.png" alt="Sports RAG Architecture" width="700"/>
-</p>
+![Sports RAG Architecture](./Architecture.png)
 
 ### RAG Pipeline Steps
 
