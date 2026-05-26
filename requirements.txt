@@ -36,3 +36,4 @@ torch==2.6.0
 tqdm==4.66.5
 loguru==0.7.2
 rich==13.7.1
+reportlab
