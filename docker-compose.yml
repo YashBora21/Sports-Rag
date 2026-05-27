@@ -1,0 +1,77 @@
+version: "3.9"
+
+services:
+
+  # -------------------------------
+  # FastAPI Backend
+  # -------------------------------
+  api:
+    build: .
+    container_name: sports-rag-api
+
+    ports:
+      - "8000:8000"
+
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+
+    environment:
+      # LLM provider
+      LLM_PROVIDER: ${LLM_PROVIDER:-gemini}
+
+      # Ollama on Windows host
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-gemma3:4b}
+
+      # Gemini fallback
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GEMINI_MODEL: ${GEMINI_MODEL:-gemini-1.5-flash}
+
+      # Retrieval settings
+      EMBEDDING_MODEL: all-MiniLM-L6-v2
+      FAISS_INDEX_PATH: data/embeddings/faiss_index
+      RETRIEVER_TOP_K: 20
+      RERANKER_TOP_K: 5
+
+      # LLM settings
+      LLM_TEMPERATURE: 0.0
+      LLM_MAX_TOKENS: 1024
+
+      # APIs
+      RAPIDAPI_KEY: ${RAPIDAPI_KEY:-}
+
+      # App config
+      APP_ENV: production
+      LOG_LEVEL: INFO
+
+    restart: unless-stopped
+
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8000/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 120s
+
+  # -------------------------------
+  # Streamlit Frontend
+  # -------------------------------
+  frontend:
+    build: .
+    container_name: sports-rag-frontend
+
+    command: >
+      streamlit run src/frontend/app.py --server.port 8501 --server.address 0.0.0.0 --server.headless true --browser.gatherUsageStats false
+
+    ports:
+      - "8501:8501"
+
+    environment:
+      API_BASE_URL: http://api:8000
+
+    depends_on:
+      api:
+        condition: service_healthy
+
+    restart: unless-stopped

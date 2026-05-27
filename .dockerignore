@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Data — mounted as volumes, not baked into image
+data/raw/
+data/embeddings/
+data/chunks/
+
+# IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# Git
+.git/
+.gitignore
+
+# Logs
+logs/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Notebooks
+notebooks/
+*.ipynb
+.ipynb_checkpoints/
+
+# Tests
+tests/
+
+# Docs (not needed in container)
+*.md
+docs/
+
+# Env files (secrets — never bake into image)
+.env
+.env.*
+!.env.example
