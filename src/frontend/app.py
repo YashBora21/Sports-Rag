@@ -9,12 +9,15 @@ Requires API running at http://localhost:8000
     uvicorn src.api.main:app --reload --port 8000
 """
 
+import os
 import time
 import requests
 import streamlit as st
 
-API_BASE = "http://localhost:8000"
-TIMEOUT  = 120
+
+
+API_BASE = os.getenv("API_BASE_URL", "http://localhost:8000")
+TIMEOUT = 120
 
 # ── Page config ───────────────────────────────────────────────────────────────
 st.set_page_config(
@@ -308,8 +311,8 @@ def query_api(question: str, sport_filter: str | None, top_k: int) -> dict | Non
         st.error(f"API error {r.status_code}: {r.json().get('detail', r.text)}")
         return None
     except requests.ConnectionError:
-        st.error("Cannot reach API. Is the server running?\n`uvicorn src.api.main:app --reload --port 8000`")
-        return None
+        st.error(f"Cannot reach API at {API_BASE}. Is the server running?")
+
     except requests.Timeout:
         st.error("Request timed out. The LLM may be slow — try again.")
         return None
@@ -353,7 +356,7 @@ with st.sidebar:
                         unsafe_allow_html=True)
     else:
         st.markdown('<span class="status-pill pill-error">● API OFFLINE</span>', unsafe_allow_html=True)
-        st.caption("Start: `uvicorn src.api.main:app --reload --port 8000`")
+        st.caption(f"API URL: `{API_BASE}`")
 
     if st.button("↺ Refresh status", use_container_width=True):
         st.cache_data.clear()
@@ -506,7 +509,7 @@ else:
                         "question":    ex,
                         "answer":      result["answer"],
                         "sport_filter": sport_filter if sport_filter != "All sports" else None,
-                        "total_ms":    result["latency_ms"].get("total_ms", 0),
+                        "total_ms": result.get("latency_ms", {}).get("total_ms", 0),
                         "timestamp":   time.time(),
                     })
                     st.rerun()

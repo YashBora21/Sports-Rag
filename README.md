@@ -353,6 +353,21 @@ This project was built over 4 weeks as part of a GenAI engineering curriculum.
 | Week 4 | Evaluation | 30-question eval suite, evaluation report PDF, Docker |
 
 ---
+## 🖼️ Demo
+
+> **Sports RAG** — Ask questions across Football, Basketball, Tennis & Cricket using Retrieval-Augmented Generation.
+
+### ⚽ FIFA World Cup 2018
+![FIFA World Cup Query](assets/demo-fifa-worldcup.png)
+
+### 🏴󠁧󠁢󠁥󠁮󠁧󠁿 Arsenal vs Chelsea 2021
+![Arsenal vs Chelsea Query](assets/demo-arsenal-chelsea.png)
+
+### 🏏 Virat Kohli Profile
+![Virat Kohli Query](assets/demo-virat-kohli.png)
+
+### 🎾 Nadal Clay Court Record
+![Nadal Clay Court Query](assets/demo-nadal-clay.png)
 
 ## Known Limitations
 

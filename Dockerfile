@@ -4,7 +4,6 @@ FROM python:3.11-slim
 LABEL maintainer="Yash Bora"
 LABEL description="Sports RAG"
 
-# System deps
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     curl \
@@ -12,21 +11,20 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 WORKDIR /app
 
-# Dependencies
-COPY requirements.txt .
-
-# CPU torch
+# ── Torch first (separate cached layer — only re-downloads if version changes) ──
 RUN pip install --no-cache-dir \
-    torch==2.4.1 \
+    torch==2.6.0 \
     --index-url https://download.pytorch.org/whl/cpu
 
+# ── Rest of dependencies ──
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# App
+# ── App code ──
 COPY src ./src
 COPY scripts ./scripts
 
-# Runtime dirs
+# ── Runtime dirs ──
 RUN mkdir -p \
     data/raw \
     data/processed \
