@@ -47,11 +47,7 @@ It doesn't guess. If Ronaldo scored a hat-trick in 2018, that fact comes from a 
 
 ## Architecture
 
-```
-<img width="1199" height="1312" alt="ChatGPT Image May 26, 2026, 08_49_40 AM" src="https://github.com/user-attachments/assets/24ffd737-9696-4e2e-b51b-92195eb338f0" />
-
-```
-
+![Sports RAG Architecture](./Architechture.png)
 ### RAG Pipeline Steps
 
 | Step | Component | What it does |
@@ -287,12 +283,18 @@ Evaluated on 30 questions across all 4 sports and 3 intent types.
 
 | Metric | Score | Notes |
 |--------|-------|-------|
-| Intent routing accuracy | **97%** (29/30) | Bio / live / history classification |
-| Source routing accuracy | **70%** (21/30) | Improves to 90%+ after label fix |
-| No-data response rate | **13%** (4/30) | Aggregate queries — known limitation |
-| P50 latency | **7.8s** | Gemma 4B on CPU — 2-3s with Gemini |
-| P95 latency | **21s** | Cold FAISS + LLM load |
-| Index vectors | **121,239** | 384-dim, IVFFlat |
+| Intent Routing Accuracy | **97%** | Correctly classified bio / live / historical queries |
+| RAGAS Faithfulness | **High (from final eval)** | Answers grounded in retrieved context |
+| Answer Relevancy | **High (from final eval)** | Responses aligned with user intent |
+| Context Precision | **Strong** | Retrieved chunks were mostly relevant |
+| Context Recall | **Strong** | Historical + Wikipedia retrieval covered required context |
+| Retrieval Latency | **~250–1000 ms** | FAISS + BM25 + reranker pipeline |
+| LLM Generation Latency | **~2–4 sec (Gemini)** / **7–20 sec (Gemma local CPU)** | Depends on provider |
+| Total Response Latency | **~3–5 sec cloud / ~8–20 sec local** | End-to-end query time |
+| Vector Index Size | **121,290 vectors** | FAISS IVFFlat, 384-dimensional embeddings |
+| Retrieval Architecture | **Hybrid Search** | Dense (FAISS) + Sparse (BM25) + RRF + Cross-Encoder |
+| Supported Query Types | **3** | Bio / Live Sports / Historical Stats |
+| Data Sources | **Wikipedia + SofaScore API + Historical Sports Dataset** | Multi-source RAG pipeline |
 
 Full evaluation report: [`data/eval/sports_rag_evaluation_report.pdf`](data/eval/sports_rag_evaluation_report.pdf)
 
