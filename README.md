@@ -19,6 +19,9 @@
 </div>
 
 ---
+## 🎥 Quick GIF 
+
+![Sports RAG Demo](assets/demo.gif)
 
 ## What is this?
 
@@ -433,7 +436,7 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 <div align="center">
 
-Built with ❤️ as Project 17 of a GenAI Engineering curriculum
+Built with Yash  as Project 17 of a GenAI Engineering curriculum
 
 **Stack:** Python · FAISS · BM25 · LangChain · FastAPI · Streamlit · Gemma · Gemini · Docker
 
