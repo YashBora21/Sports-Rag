@@ -1,12 +1,6 @@
 """
 src/frontend/app.py
-Sports RAG — Streamlit frontend
-
-Run:
-    streamlit run src/frontend/app.py
-
-Requires API running at http://localhost:8000
-    uvicorn src.api.main:app --reload --port 8000
+Sports RAG — Streamlit frontend (v5 — clean minimal rewrite)
 """
 
 import os
@@ -14,283 +8,397 @@ import time
 import requests
 import streamlit as st
 
-
-
 API_BASE = os.getenv("API_BASE_URL", "http://localhost:8000")
-TIMEOUT = 120
+TIMEOUT  = 120
 
-# ── Page config ───────────────────────────────────────────────────────────────
 st.set_page_config(
-    page_title = "Sports RAG",
-    page_icon  = "⚽",
-    layout     = "wide",
-    initial_sidebar_state = "expanded",
+    page_title="Sports RAG",
+    page_icon="🏆",
+    layout="wide",
+    initial_sidebar_state="collapsed",
 )
 
-# ── Custom CSS ────────────────────────────────────────────────────────────────
+# ─────────────────────────────────────────────────────────────────────────────
+#  CSS + FIXED SIDEBAR HTML
+# ─────────────────────────────────────────────────────────────────────────────
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@600;700&display=swap');
 
-/* ── Global ── */
-html, body, [class*="css"] {
-    font-family: 'DM Sans', sans-serif;
-}
-.stApp {
-    background: #0a0e17;
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body, [class*="css"], .stApp {
+    font-family: 'Inter', sans-serif;
+    background: #0d0d0f !important;
+    color: #e2e2e6;
 }
 
-/* ── Hide default elements ── */
+/* ── Hide Streamlit chrome ── */
 #MainMenu, footer, header { visibility: hidden; }
-.block-container { padding-top: 1.5rem; padding-bottom: 2rem; }
+button[data-testid="collapsedControl"],
+section[data-testid="stSidebar"] { display: none !important; }
 
-/* ── Header ── */
-.rag-header {
-    background: linear-gradient(135deg, #0f1623 0%, #1a2540 50%, #0f1623 100%);
-    border: 1px solid rgba(255,165,0,0.2);
-    border-radius: 16px;
-    padding: 28px 36px;
-    margin-bottom: 24px;
-    position: relative;
-    overflow: hidden;
-}
-.rag-header::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #ff6b00, #ffa500, #ff6b00);
-}
-.rag-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 3rem;
-    letter-spacing: 4px;
-    color: #ffffff;
-    margin: 0;
-    line-height: 1;
-}
-.rag-title span { color: #ffa500; }
-.rag-subtitle {
-    font-size: 0.85rem;
-    color: #8892a4;
-    margin-top: 6px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+/* ── Main container ── */
+.block-container {
+    max-width: 780px !important;
+    padding: 0 24px 60px !important;
+    margin: 0 auto 0 96px !important;
 }
 
-/* ── Status pills ── */
-.status-row { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
-.status-pill {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    padding: 4px 12px;
-    border-radius: 20px;
-    border: 1px solid;
-}
-.pill-ok    { background: rgba(0,200,100,0.1); border-color: rgba(0,200,100,0.4); color: #00c864; }
-.pill-warn  { background: rgba(255,165,0,0.1); border-color: rgba(255,165,0,0.4); color: #ffa500; }
-.pill-error { background: rgba(255,60,60,0.1); border-color: rgba(255,60,60,0.4); color: #ff3c3c; }
-
-/* ── Answer card ── */
-.answer-card {
-    background: linear-gradient(135deg, #111827 0%, #1a2540 100%);
-    border: 1px solid rgba(255,165,0,0.3);
-    border-radius: 14px;
-    padding: 24px 28px;
-    margin: 16px 0;
-    position: relative;
-}
-.answer-card::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 20%; bottom: 20%;
-    width: 3px;
-    background: linear-gradient(180deg, #ff6b00, #ffa500);
-    border-radius: 2px;
-}
-.answer-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
-    color: #ffa500;
-    text-transform: uppercase;
-    margin-bottom: 10px;
-}
-.answer-text {
-    font-size: 1.05rem;
-    color: #e8edf5;
-    line-height: 1.75;
-    margin: 0;
-}
-
-/* ── Timing bar ── */
-.timing-row {
+/* ═══════════════════════════════════
+   FIXED SIDEBAR
+═══════════════════════════════════ */
+#rag-sidebar {
+    position: fixed;
+    left: 0; top: 0; bottom: 0;
+    width: 64px;
+    background: #111114;
+    border-right: 1px solid rgba(255,255,255,0.05);
     display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-top: 14px;
-}
-.timing-chip {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 6px;
-    padding: 3px 10px;
-    color: #8892a4;
-}
-.timing-chip b { color: #c8d3e0; }
-
-/* ── Source chunk card ── */
-.source-card {
-    background: #111827;
-    border: 1px solid rgba(255,255,255,0.07);
-    border-radius: 10px;
-    padding: 14px 18px;
-    margin-bottom: 10px;
-    transition: border-color 0.2s;
-}
-.source-card:hover { border-color: rgba(255,165,0,0.3); }
-.source-meta {
-    display: flex;
-    gap: 8px;
+    flex-direction: column;
     align-items: center;
-    margin-bottom: 8px;
-    flex-wrap: wrap;
+    padding: 20px 0;
+    z-index: 9999;
+    gap: 0;
 }
-.sport-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    font-weight: 500;
-    padding: 2px 8px;
-    border-radius: 4px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+.sb-logo {
+    width: 38px; height: 38px;
+    background: #ff3e7e;
+    border-radius: 11px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 28px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 14px rgba(255,62,126,0.35);
 }
-.tag-football   { background: rgba(0,128,255,0.15); color: #4d9fff; border: 1px solid rgba(0,128,255,0.3); }
-.tag-basketball { background: rgba(255,100,0,0.15); color: #ff7433; border: 1px solid rgba(255,100,0,0.3); }
-.tag-tennis     { background: rgba(50,200,100,0.15); color: #32c864; border: 1px solid rgba(50,200,100,0.3); }
-.tag-cricket    { background: rgba(180,100,255,0.15); color: #c86eff; border: 1px solid rgba(180,100,255,0.3); }
-.tag-unknown    { background: rgba(150,150,150,0.15); color: #aaa; border: 1px solid rgba(150,150,150,0.3); }
-.score-badge {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    color: #8892a4;
-    margin-left: auto;
+.sb-logo svg { width: 20px; height: 20px; fill: #fff; }
+
+.sb-nav { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 100%; }
+.sb-btn {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+    color: #40404e;
+    text-decoration: none;
 }
-.source-text {
-    font-size: 0.88rem;
-    color: #8892a4;
-    line-height: 1.6;
+.sb-btn:hover  { background: rgba(255,255,255,0.05); color: #80809a; }
+.sb-btn.active { background: rgba(255,62,126,0.12); color: #ff3e7e; }
+.sb-btn svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+.sb-spacer { flex: 1; }
+.sb-avatar {
+    width: 34px; height: 34px;
+    background: linear-gradient(135deg, #ff3e7e, #c0195a);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; color: #fff;
+    flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════
+   HERO
+═══════════════════════════════════ */
+.hero {
+    text-align: center;
+    padding: 48px 0 28px;
+}
+.hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #f0f0f4;
+    letter-spacing: -0.5px;
+    line-height: 1.18;
     margin: 0;
 }
-
-/* ── Sidebar ── */
-section[data-testid="stSidebar"] {
-    background: #0d1120 !important;
-    border-right: 1px solid rgba(255,255,255,0.06) !important;
-}
-.sidebar-section {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 2px;
-    color: #ffa500;
-    text-transform: uppercase;
-    margin: 20px 0 10px;
-    padding-bottom: 6px;
-    border-bottom: 1px solid rgba(255,165,0,0.2);
+.hero h1 em { font-style: normal; color: #ff3e7e; }
+.hero p {
+    font-size: 0.875rem;
+    color: #55555f;
+    margin-top: 10px;
+    line-height: 1.5;
 }
 
-/* ── Input styling ── */
-.stTextArea textarea {
-    background: #111827 !important;
-    border: 1px solid rgba(255,165,0,0.2) !important;
-    color: #e8edf5 !important;
-    font-family: 'DM Sans', sans-serif !important;
-    border-radius: 10px !important;
+/* ═══════════════════════════════════
+   SEARCH ROW
+═══════════════════════════════════ */
+/* input */
+.stTextInput > div > div > input {
+    background: #16161a !important;
+    border: 1.5px solid rgba(255,62,126,0.28) !important;
+    border-radius: 14px !important;
+    color: #e0e0e8 !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 0.97rem !important;
+    padding: 0 20px !important;
+    height: 52px !important;
+    caret-color: #ff3e7e !important;
+    transition: border-color 0.2s, box-shadow 0.2s !important;
 }
-.stTextArea textarea:focus {
-    border-color: rgba(255,165,0,0.6) !important;
-    box-shadow: 0 0 0 1px rgba(255,165,0,0.3) !important;
+.stTextInput > div > div > input:focus {
+    border-color: rgba(255,62,126,0.65) !important;
+    box-shadow: 0 0 0 3px rgba(255,62,126,0.10) !important;
+    outline: none !important;
 }
-.stButton > button {
-    background: linear-gradient(135deg, #ff6b00, #ffa500) !important;
-    color: #000 !important;
-    font-family: 'Bebas Neue', sans-serif !important;
-    font-size: 1.1rem !important;
-    letter-spacing: 2px !important;
+.stTextInput > div > div > input::placeholder { color: #3d3d4a !important; }
+
+/* ── submit button: scoped via .submit-wrap ── */
+.submit-wrap > div > div > button {
+    background: #ff3e7e !important;
+    color: #fff !important;
     border: none !important;
-    border-radius: 10px !important;
-    padding: 0.5rem 2rem !important;
-    width: 100% !important;
-    transition: opacity 0.2s !important;
+    border-radius: 12px !important;
+    height: 48px !important;
+    width: 48px !important;
+    min-width: 48px !important;
+    padding: 0 !important;
+    font-size: 1.15rem !important;
+    line-height: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    cursor: pointer !important;
+    margin-top: 2px !important;
+    transition: background 0.15s, transform 0.1s !important;
+    box-shadow: 0 4px 14px rgba(255,62,126,0.3) !important;
 }
-.stButton > button:hover { opacity: 0.85 !important; }
+.submit-wrap > div > div > button:hover {
+    background: #e8306a !important;
+    transform: scale(1.04) !important;
+}
+.submit-wrap > div > div > button:active { transform: scale(0.96) !important; }
 
-/* ── Chat history ── */
-.history-item {
-    background: #111827;
+/* ── all OTHER buttons (chips, toggles) ── */
+.stButton > button {
+    background: #16161a !important;
+    border: 1px solid rgba(255,255,255,0.08) !important;
+    border-radius: 22px !important;
+    color: #7070a0 !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 0.8rem !important;
+    font-weight: 400 !important;
+    padding: 6px 15px !important;
+    height: auto !important;
+    width: auto !important;
+    min-width: unset !important;
+    white-space: nowrap !important;
+    cursor: pointer !important;
+    transition: border-color 0.18s, color 0.18s, background 0.18s !important;
+}
+.stButton > button:hover {
+    border-color: rgba(255,62,126,0.4) !important;
+    color: #ff3e7e !important;
+    background: rgba(255,62,126,0.07) !important;
+}
+.stButton > button:active { transform: scale(0.97) !important; }
+
+/* ── chips row: center-justify the st.columns ── */
+.chips-outer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 16px 0 8px;
+}
+.chips-label {
+    font-size: 0.75rem;
+    color: #3d3d4a;
+    margin-bottom: 10px;
+    letter-spacing: 0.03em;
+}
+/* make each chip column shrink to content */
+[data-testid="stHorizontalBlock"] > [data-testid="stColumn"] {
+    min-width: 0 !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+}
+
+/* ═══════════════════════════════════
+   QUERY BAR
+═══════════════════════════════════ */
+.query-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #16161a;
+    border: 1px solid rgba(255,62,126,0.16);
+    border-radius: 12px;
+    padding: 11px 16px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    color: #70709a;
+}
+.query-bar .q-tag {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: #ff3e7e;
+    background: rgba(255,62,126,0.12);
+    border-radius: 4px;
+    padding: 2px 6px;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════
+   ANSWER CARD
+═══════════════════════════════════ */
+.answer-card {
+    background: #141418;
     border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 8px;
-    padding: 10px 14px;
-    margin-bottom: 6px;
-    cursor: pointer;
-    transition: border-color 0.2s, background 0.2s;
+    border-radius: 16px;
+    padding: 24px 26px;
+    margin-bottom: 10px;
 }
-.history-item:hover {
-    border-color: rgba(255,165,0,0.3);
-    background: #151d2e;
+.answer-hdr {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
 }
-.history-q {
-    font-size: 0.82rem;
-    color: #c8d3e0;
-    white-space: nowrap;
+.answer-hdr .spark { color: #ff3e7e; font-size: 1rem; }
+.answer-hdr .label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #ff3e7e;
+    letter-spacing: 0.02em;
+}
+.answer-body {
+    font-size: 0.95rem;
+    color: #c8c8d8;
+    line-height: 1.78;
+    margin-bottom: 18px;
+}
+.latency-strip {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 12px;
+}
+.lat { display: flex; align-items: center; gap: 5px; font-size: 0.74rem; color: #3d3d4a; }
+.lat .k { color: #ff3e7e; opacity: 0.6; font-size: 0.78rem; }
+.lat .v { color: #80809a; font-weight: 500; }
+
+/* ═══════════════════════════════════
+   SOURCES CARD
+═══════════════════════════════════ */
+.sources-card {
+    background: #141418;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
     overflow: hidden;
-    text-overflow: ellipsis;
+    margin-bottom: 10px;
 }
-.history-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    color: #4a5568;
-    margin-top: 2px;
+.sources-hdr {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 13px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.sources-hdr .stitle {
+    font-size: 0.84rem;
+    font-weight: 500;
+    color: #b0b0c4;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+.sources-hdr .scount { font-size: 0.74rem; color: #3d3d4a; }
+.src-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 13px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
+    transition: background 0.14s;
+}
+.src-row:last-child { border-bottom: none; }
+.src-row:hover { background: rgba(255,255,255,0.015); }
+.src-num { font-size: 0.74rem; color: #2e2e3a; font-weight: 600; min-width: 20px; padding-top: 2px; }
+.sport-pill {
+    font-size: 0.63rem; font-weight: 700; letter-spacing: 0.6px;
+    padding: 3px 7px; border-radius: 5px; text-transform: uppercase;
+    white-space: nowrap; flex-shrink: 0; margin-top: 1px;
+}
+.p-football   { background:rgba(255,62,126,0.12); color:#ff3e7e; border:1px solid rgba(255,62,126,0.22); }
+.p-basketball { background:rgba(255,140,0,0.12);  color:#ff8c00; border:1px solid rgba(255,140,0,0.22); }
+.p-tennis     { background:rgba(50,220,120,0.12); color:#32dc78; border:1px solid rgba(50,220,120,0.22); }
+.p-cricket    { background:rgba(255,62,126,0.12); color:#ff3e7e; border:1px solid rgba(255,62,126,0.22); }
+.p-wikipedia  { background:rgba(100,160,255,0.12);color:#64a0ff; border:1px solid rgba(100,160,255,0.22); }
+.p-unknown    { background:rgba(100,100,110,0.12);color:#707090; border:1px solid rgba(100,100,110,0.22); }
+.src-text {
+    font-size: 0.82rem; color: #606080; line-height: 1.58; flex: 1;
+    display: -webkit-box; -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical; overflow: hidden;
 }
 
-/* ── Empty state ── */
-.empty-state {
-    text-align: center;
-    padding: 60px 20px;
-    color: #4a5568;
+/* ═══════════════════════════════════
+   HISTORY
+═══════════════════════════════════ */
+.hist-label {
+    font-size: 0.67rem; color: #2e2e3a;
+    text-transform: uppercase; letter-spacing: 0.08em;
+    margin: 22px 0 8px;
 }
-.empty-icon { font-size: 3rem; margin-bottom: 12px; }
-.empty-title {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.5rem;
-    letter-spacing: 3px;
-    color: #2d3748;
-    margin-bottom: 8px;
+.hist-item {
+    padding: 9px 12px; border-radius: 8px;
+    transition: background 0.14s; cursor: default;
 }
-.example-queries { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-top: 20px; }
-.example-chip {
-    background: rgba(255,165,0,0.08);
-    border: 1px solid rgba(255,165,0,0.2);
-    color: #ffa500;
-    font-size: 0.8rem;
-    padding: 6px 14px;
-    border-radius: 20px;
-    cursor: pointer;
-}
+.hist-item:hover { background: rgba(255,255,255,0.03); }
+.hist-q { font-size: 0.8rem; color: #b0b0c4; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.hist-m { font-size: 0.67rem; color: #2e2e3a; margin-top: 2px; }
+
+.divider { border:none; border-top:1px solid rgba(255,255,255,0.04); margin:16px 0; }
 </style>
+
+<!-- ═══ FIXED SIDEBAR ═══ -->
+<div id="rag-sidebar">
+  <!-- Logo -->
+  <div class="sb-logo">
+    <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+  </div>
+
+  <nav class="sb-nav">
+    <!-- Search -->
+    <div class="sb-btn active" title="Search">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    </div>
+    <!-- Database -->
+    <div class="sb-btn" title="Index">
+      <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+    </div>
+    <!-- Activity -->
+    <div class="sb-btn" title="Activity">
+      <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+    </div>
+    <!-- Clock -->
+    <div class="sb-btn" title="History">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+    </div>
+  </nav>
+
+  <div class="sb-spacer"></div>
+  <div class="sb-avatar">AS</div>
+</div>
 """, unsafe_allow_html=True)
 
-
-# ── Session state ─────────────────────────────────────────────────────────────
-if "history"       not in st.session_state: st.session_state.history       = []
+# ─────────────────────────────────────────────────────────────────────────────
+#  SESSION STATE
+# ─────────────────────────────────────────────────────────────────────────────
+if "history"        not in st.session_state: st.session_state.history        = []
 if "current_result" not in st.session_state: st.session_state.current_result = None
-if "api_status"    not in st.session_state: st.session_state.api_status    = None
+if "show_sources"   not in st.session_state: st.session_state.show_sources   = True
 
+# Hidden sidebar keeps filter values alive across reruns
+with st.sidebar:
+    sport_filter = st.selectbox("Sport", ["All sports","Football","Basketball","Tennis","Cricket"])
+    top_k        = st.slider("Chunks", 1, 10, 5)
 
-# ── API helpers ───────────────────────────────────────────────────────────────
-
+# ─────────────────────────────────────────────────────────────────────────────
+#  API HELPERS
+# ─────────────────────────────────────────────────────────────────────────────
 @st.cache_data(ttl=30)
 def get_health():
     try:
@@ -298,7 +406,6 @@ def get_health():
         return r.json() if r.status_code == 200 else None
     except Exception:
         return None
-
 
 def query_api(question: str, sport_filter: str | None, top_k: int) -> dict | None:
     try:
@@ -311,205 +418,188 @@ def query_api(question: str, sport_filter: str | None, top_k: int) -> dict | Non
         st.error(f"API error {r.status_code}: {r.json().get('detail', r.text)}")
         return None
     except requests.ConnectionError:
-        st.error(f"Cannot reach API at {API_BASE}. Is the server running?")
-
+        st.error(f"Cannot reach API at {API_BASE}. Is the server running?\n`uvicorn src.api.main:app --reload --port 8000`")
+        return None
     except requests.Timeout:
-        st.error("Request timed out. The LLM may be slow — try again.")
+        st.error("Request timed out. Try again.")
         return None
 
+def sport_pill(sport: str) -> str:
+    s = sport.lower()
+    if s == "wikipedia":
+        return '<span class="sport-pill p-wikipedia">🌐 Wiki</span>'
+    icons = {"football":"⚽","basketball":"🏀","tennis":"🎾","cricket":"🏏"}
+    cls   = f"p-{s}" if s in icons else "p-unknown"
+    return f'<span class="sport-pill {cls}">{icons.get(s,"")} {s.capitalize()}</span>'
 
-def sport_tag_html(sport: str) -> str:
-    cls = f"tag-{sport.lower()}" if sport.lower() in ["football","basketball","tennis","cricket"] else "tag-unknown"
-    icons = {"football": "⚽", "basketball": "🏀", "tennis": "🎾", "cricket": "🏏"}
-    icon  = icons.get(sport.lower(), "🏆")
-    return f'<span class="sport-tag {cls}">{icon} {sport}</span>'
-
-
-# ── Sidebar ───────────────────────────────────────────────────────────────────
-
-with st.sidebar:
-    st.markdown('<div class="sidebar-section">⚙ Configuration</div>', unsafe_allow_html=True)
-
-    sport_filter = st.selectbox(
-        "Sport filter",
-        ["All sports", "Football", "Basketball", "Tennis", "Cricket"],
-        help="Restrict retrieval to one sport",
-    )
-    top_k = st.slider("Source chunks", min_value=1, max_value=10, value=5,
-                      help="Number of source passages shown to the LLM")
-
-    st.markdown('<div class="sidebar-section">📡 API Status</div>', unsafe_allow_html=True)
-    health = get_health()
-    if health:
-        overall = health.get("status", "unknown")
-        pill_cls = "pill-ok" if overall == "ok" else "pill-warn" if overall == "degraded" else "pill-error"
-        st.markdown(f"""
-        <div class="status-row">
-          <span class="status-pill {pill_cls}">● {overall.upper()}</span>
-          <span class="status-pill pill-ok">{health.get('index_vectors',0):,} vectors</span>
-          <span class="status-pill pill-ok">↑ {health.get('uptime_s',0):.0f}s</span>
-        </div>""", unsafe_allow_html=True)
-        for k, v in health.get("components", {}).items():
-            icon = "✓" if v["status"] == "ok" else "✗"
-            cls  = "pill-ok" if v["status"] == "ok" else "pill-error"
-            st.markdown(f'<div style="margin-top:6px"><span class="status-pill {cls}">{icon} {k}</span></div>',
-                        unsafe_allow_html=True)
-    else:
-        st.markdown('<span class="status-pill pill-error">● API OFFLINE</span>', unsafe_allow_html=True)
-        st.caption(f"API URL: `{API_BASE}`")
-
-    if st.button("↺ Refresh status", use_container_width=True):
-        st.cache_data.clear()
+def run_query(question: str):
+    with st.spinner("Retrieving · Reranking · Generating…"):
+        r = query_api(question.strip(), sport_filter, top_k)
+    if r:
+        r["question"] = question.strip()
+        st.session_state.current_result = r
+        st.session_state.history.append({
+            "question":     question.strip(),
+            "answer":       r.get("answer",""),
+            "sport_filter": None if sport_filter == "All sports" else sport_filter,
+            "total_ms":     r.get("latency_ms",{}).get("total_ms", 0),
+            "timestamp":    time.time(),
+        })
         st.rerun()
 
-    # Query history
-    if st.session_state.history:
-        st.markdown('<div class="sidebar-section">🕑 History</div>', unsafe_allow_html=True)
-        for i, item in enumerate(reversed(st.session_state.history[-10:])):
-            elapsed = time.time() - item["timestamp"]
-            age     = f"{int(elapsed//60)}m ago" if elapsed > 60 else f"{int(elapsed)}s ago"
-            sport_label = item.get("sport_filter") or "all"
-            st.markdown(f"""
-            <div class="history-item">
-              <div class="history-q">{item['question'][:60]}{'…' if len(item['question'])>60 else ''}</div>
-              <div class="history-meta">{age} · {sport_label} · {item.get('total_ms',0)}ms</div>
-            </div>""", unsafe_allow_html=True)
-
-        if st.button("Clear history", use_container_width=True):
-            st.session_state.history       = []
-            st.session_state.current_result = None
-            st.rerun()
-
-
-# ── Main content ──────────────────────────────────────────────────────────────
-
-# Header
+# ─────────────────────────────────────────────────────────────────────────────
+#  HERO
+# ─────────────────────────────────────────────────────────────────────────────
 st.markdown("""
-<div class="rag-header">
-  <div class="rag-title">SPORTS <span>RAG</span></div>
-  <div class="rag-subtitle">Retrieval-Augmented Generation · Football · Basketball · Tennis · Cricket</div>
+<div class="hero">
+  <h1>Sports Intelligence, Powered by <em>RAG</em></h1>
+  <p>Retrieval-Augmented Generation for Football, Basketball, Tennis, Cricket and more.</p>
 </div>
 """, unsafe_allow_html=True)
 
-# Query input
-col1, col2 = st.columns([5, 1])
-with col1:
-    question = st.text_area(
-        "Ask a sports question",
-        placeholder="e.g. Who won the 2019 IPL final?  ·  Arsenal results in 2021  ·  Nadal clay court record",
-        height=90,
-        label_visibility="collapsed",
+# ─────────────────────────────────────────────────────────────────────────────
+#  SEARCH BAR  —  input + pink submit button side by side
+# ─────────────────────────────────────────────────────────────────────────────
+c_input, c_btn = st.columns([15, 1])
+with c_input:
+    question = st.text_input(
+        "q", label_visibility="collapsed",
+        placeholder="Ask anything about sports…",
+        key="main_input",
     )
-with col2:
-    st.markdown("<div style='height:10px'></div>", unsafe_allow_html=True)
-    submit = st.button("ASK", use_container_width=True)
+with c_btn:
+    # .submit-wrap scopes the pink style to ONLY this button
+    st.markdown('<div class="submit-wrap">', unsafe_allow_html=True)
+    submit = st.button("→", key="submit_btn")
+    st.markdown('</div>', unsafe_allow_html=True)
 
-# Example queries (shown when no history)
+# ─────────────────────────────────────────────────────────────────────────────
+#  CHIPS  —  shown only on empty state, centered, 3 per row
+# ─────────────────────────────────────────────────────────────────────────────
 EXAMPLES = [
-    "Who won the 2019 IPL final?",
-    "Arsenal vs Chelsea results 2021",
-    "Djokovic vs Federer Wimbledon",
-    "LeBron James stats this season",
-    "Nadal clay court record",
-    "Premier League top scorer 2020",
+    "Who is the best cricket player of all time?",
+    "Top 5 football clubs with most trophies",
+    "Compare Messi and Ronaldo stats",
+    "Latest F1 race winner",
+    "Djokovic Wimbledon titles",
+    "IPL 2019 final result",
 ]
-
-# Handle submit
-if submit and question.strip():
-    if len(question.strip()) < 3:
-        st.warning("Question is too short.")
-    else:
-        with st.spinner("🔍 Retrieving · Reranking · Generating..."):
-            result = query_api(
-                question     = question.strip(),
-                sport_filter = sport_filter,
-                top_k        = top_k,
-            )
-        if result:
-            st.session_state.current_result = result
-            st.session_state.history.append({
-                "question":    question.strip(),
-                "answer":      result["answer"],
-                "sport_filter": sport_filter if sport_filter != "All sports" else None,
-                "total_ms":    result["latency_ms"].get("total_ms", 0),
-                "timestamp":   time.time(),
-            })
-
-elif submit and not question.strip():
-    st.warning("Please enter a question.")
-
-# ── Result display ────────────────────────────────────────────────────────────
 
 result = st.session_state.current_result
 
-if result:
-    lat = result.get("latency_ms", {})
-
-    # Answer card
-    st.markdown(f"""
-    <div class="answer-card">
-      <div class="answer-label">Answer</div>
-      <p class="answer-text">{result['answer']}</p>
-      <div class="timing-row">
-        <span class="timing-chip">⚡ total <b>{lat.get('total_ms',0)}ms</b></span>
-        <span class="timing-chip">🔍 retrieve <b>{lat.get('dense_ms',0)}ms</b></span>
-        <span class="timing-chip">📊 rerank <b>{lat.get('rerank_ms',0)}ms</b></span>
-        <span class="timing-chip">🤖 llm <b>{lat.get('llm_ms',0)}ms</b></span>
-      </div>
-    </div>
-    """, unsafe_allow_html=True)
-
-    # Sources
-    sources = result.get("sources", [])
-    if sources:
-        with st.expander(f"📄 View {len(sources)} source chunks used", expanded=False):
-            for i, src in enumerate(sources, 1):
-                sport     = src.get("sport", "unknown")
-                score     = src.get("rerank_score", 0)
-                text      = src.get("text", "")
-                meta      = src.get("metadata", {})
-                season    = meta.get("season", meta.get("date", ""))
-                comp      = meta.get("competition", meta.get("tournament", ""))
-
-                st.markdown(f"""
-                <div class="source-card">
-                  <div class="source-meta">
-                    <span style="font-family:monospace;font-size:11px;color:#4a5568">#{i}</span>
-                    {sport_tag_html(sport)}
-                    {"<span style='font-size:11px;color:#4a5568'>" + comp + "</span>" if comp else ""}
-                    {"<span style='font-size:11px;color:#4a5568'>" + str(season) + "</span>" if season else ""}
-                    <span class="score-badge">score: {score:.3f}</span>
-                  </div>
-                  <p class="source-text">{text}</p>
-                </div>
-                """, unsafe_allow_html=True)
-
-else:
-    # Empty state with example queries
-    st.markdown("""
-    <div class="empty-state">
-      <div class="empty-icon">🏆</div>
-      <div class="empty-title">Ask anything about sports</div>
-      <div style="font-size:0.85rem;color:#4a5568">121,239 matches · Football · Basketball · Tennis · Cricket</div>
-    </div>
-    """, unsafe_allow_html=True)
-
-    st.markdown("<div style='text-align:center;margin-top:8px;font-size:0.8rem;color:#4a5568'>Try an example:</div>",
+if not result:
+    st.markdown('<div class="chips-outer"><div class="chips-label">Try asking</div></div>',
                 unsafe_allow_html=True)
 
-    cols = st.columns(3)
-    for i, ex in enumerate(EXAMPLES):
-        with cols[i % 3]:
-            if st.button(ex, key=f"ex_{i}", use_container_width=True):
-                with st.spinner("🔍 Retrieving · Reranking · Generating..."):
-                    result = query_api(ex, sport_filter, top_k)
-                if result:
-                    st.session_state.current_result = result
-                    st.session_state.history.append({
-                        "question":    ex,
-                        "answer":      result["answer"],
-                        "sport_filter": sport_filter if sport_filter != "All sports" else None,
-                        "total_ms": result.get("latency_ms", {}).get("total_ms", 0),
-                        "timestamp":   time.time(),
-                    })
-                    st.rerun()
+    for row_start in range(0, len(EXAMPLES), 3):
+        row = EXAMPLES[row_start : row_start + 3]
+        # equal-width columns; 3 is wide enough for chip text
+        cols = st.columns([1, 1, 1])
+        for col, ex in zip(cols, row):
+            with col:
+                label = ex if len(ex) <= 34 else ex[:32] + "…"
+                if st.button(label, key=f"chip_{EXAMPLES.index(ex)}", use_container_width=False):
+                    run_query(ex)
+
+    st.markdown("<div style='height:8px'></div>", unsafe_allow_html=True)
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  SUBMIT HANDLER
+# ─────────────────────────────────────────────────────────────────────────────
+if submit and question.strip():
+    if len(question.strip()) < 3:
+        st.warning("Question too short.")
+    else:
+        run_query(question.strip())
+
+# ─────────────────────────────────────────────────────────────────────────────
+#  RESULT
+# ─────────────────────────────────────────────────────────────────────────────
+if result:
+    lat     = result.get("latency_ms", {})
+    answer  = result.get("answer", "")
+    sources = result.get("sources", [])
+
+    # Query bar
+    st.markdown(f"""
+    <div class="query-bar">
+      <span class="q-tag">Q</span>
+      {result.get('question','')}
+    </div>""", unsafe_allow_html=True)
+
+    # Answer
+    total_ms  = lat.get("total_ms", 0)
+    ret_ms    = lat.get("dense_ms", lat.get("wiki_ms", 0))
+    rerank_ms = lat.get("rerank_ms", 0)
+    llm_ms    = lat.get("llm_ms", 0)
+
+    st.markdown(f"""
+    <div class="answer-card">
+      <div class="answer-hdr">
+        <span class="spark">✦</span>
+        <span class="label">Answer</span>
+      </div>
+      <div class="answer-body">{answer}</div>
+      <div class="latency-strip">
+        <div class="lat"><span class="k">◷</span> Total&nbsp;<span class="v">{total_ms}ms</span></div>
+        <div class="lat"><span class="k">◎</span> Retrieve&nbsp;<span class="v">{ret_ms}ms</span></div>
+        <div class="lat"><span class="k">⇌</span> Rerank&nbsp;<span class="v">{rerank_ms}ms</span></div>
+        <div class="lat"><span class="k">⊕</span> LLM&nbsp;<span class="v">{llm_ms}ms</span></div>
+      </div>
+    </div>""", unsafe_allow_html=True)
+
+    # Sources
+    if sources:
+        rows_html = ""
+        for i, src in enumerate(sources, 1):
+            sp   = src.get("sport", "unknown")
+            text = src.get("text", "")[:200]
+            pill = ('<span class="sport-pill p-wikipedia">🌐 Wiki</span>'
+                    if src.get("source","") == "wikipedia" else sport_pill(sp))
+            rows_html += f"""
+            <div class="src-row">
+              <div class="src-num">#{i}</div>
+              {pill}
+              <div class="src-text">{text}…</div>
+            </div>"""
+
+        show    = st.session_state.show_sources
+        chevron = "∧" if show else "∨"
+
+        st.markdown(f"""
+        <div class="sources-card">
+          <div class="sources-hdr">
+            <span class="stitle">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                   stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+              </svg>
+              Sources
+            </span>
+            <span class="scount">{len(sources)} chunks &nbsp;{chevron}</span>
+          </div>
+          {"" if not show else rows_html}
+        </div>""", unsafe_allow_html=True)
+
+        if st.button("▲ Hide" if show else "▼ Show sources", key="toggle_src"):
+            st.session_state.show_sources = not st.session_state.show_sources
+            st.rerun()
+
+    # New question button
+    if st.button("← New question", key="new_q"):
+        st.session_state.current_result = None
+        st.rerun()
+
+    # History
+    if st.session_state.history:
+        st.markdown('<hr class="divider"><div class="hist-label">Recent</div>',
+                    unsafe_allow_html=True)
+        for item in reversed(st.session_state.history[-6:]):
+            elapsed = time.time() - item["timestamp"]
+            age = f"{int(elapsed//60)}m ago" if elapsed > 60 else f"{int(elapsed)}s ago"
+            st.markdown(f"""
+            <div class="hist-item">
+              <div class="hist-q">{item['question'][:72]}</div>
+              <div class="hist-m">{age} · {item.get('total_ms',0)}ms</div>
+            </div>""", unsafe_allow_html=True)

@@ -15,3 +15,5 @@ logs/
 dist/
 build/
 *.egg-info/
+*.bak
+*_bak
