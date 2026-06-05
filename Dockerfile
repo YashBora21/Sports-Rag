@@ -10,7 +10,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
+COPY start.sh . 
 
+RUN chmod +x start.sh
+# ── App code ──
+COPY src ./src
+COPY scripts ./scripts
+COPY data ./data
 # ── Torch first (separate cached layer — only re-downloads if version changes) ──
 RUN pip install --no-cache-dir \
     torch==2.6.0 \
@@ -38,9 +44,9 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV APP_ENV=production
 ENV LOG_LEVEL=INFO
 
-EXPOSE 8000 8501
+EXPOSE 7860
 
 HEALTHCHECK --interval=30s --timeout=10s --start-period=120s --retries=3 \
     CMD curl -f http://localhost:8000/health || exit 1
 
-CMD ["uvicorn", "src.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["./start.sh"]
