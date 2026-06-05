@@ -4,16 +4,26 @@ __pycache__/
 *.pyo
 .venv/
 venv/
+
 data/raw/
-data/embeddings/
+
+# Keep embeddings for deployment
+!data/embeddings/
+!data/embeddings/*.index
+!data/embeddings/*.jsonl
+
 *.faiss
 *.pkl
+
 .DS_Store
 *.log
 logs/
+
 .ipynb_checkpoints/
+
 dist/
 build/
 *.egg-info/
+
 *.bak
 *_bak
