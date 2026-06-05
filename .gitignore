@@ -27,3 +27,5 @@ build/
 
 *.bak
 *_bak
+data/chunks/
+data/processed/
