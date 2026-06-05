@@ -6,15 +6,15 @@ __pycache__/
 .Python
 *.egg-info/
 
-# Virtual environment
+# Virtual environments
 venv/
 .venv/
 env/
 
-# Data — mounted as volumes, not baked into image
+# Data not needed at runtime
 data/raw/
-data/embeddings/
 data/chunks/
+data/processed/
 
 # IDE
 .vscode/
@@ -23,7 +23,6 @@ data/chunks/
 
 # Git
 .git/
-.gitignore
 
 # Logs
 logs/
@@ -41,11 +40,16 @@ notebooks/
 # Tests
 tests/
 
-# Docs (not needed in container)
-*.md
+# Docs
 docs/
 
-# Env files (secrets — never bake into image)
+# Secrets
 .env
 .env.*
 !.env.example
+
+# IMPORTANT:
+# Keep these files in the Docker image
+!data/embeddings/
+!data/embeddings/faiss_index.index
+!data/embeddings/metadata.jsonl
